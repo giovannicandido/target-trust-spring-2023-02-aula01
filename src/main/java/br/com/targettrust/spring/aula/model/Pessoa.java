@@ -1,4 +1,4 @@
-package br.com.targettrust.spring.aula;
+package br.com.targettrust.spring.aula.model;
 
 import java.time.LocalDate;
 
