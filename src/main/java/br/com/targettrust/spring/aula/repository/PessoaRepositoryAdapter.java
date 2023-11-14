@@ -2,19 +2,18 @@ package br.com.targettrust.spring.aula.repository;
 
 import br.com.targettrust.spring.aula.model.Pessoa;
 import br.com.targettrust.spring.aula.model.error.NotFoundException;
-import org.springframework.context.annotation.Primary;
+import br.com.targettrust.spring.aula.service.PessoaServiceRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
 @Repository
-@Primary
-public class PessoaBancoSpringRepositoryAdapter implements PessoaRepository {
+public class PessoaRepositoryAdapter implements PessoaServiceRepository {
 
-    private final PessoaSpringRepository repository;
+    private final PessoaRepository repository;
 
-    public PessoaBancoSpringRepositoryAdapter(PessoaSpringRepository repository) {
+    public PessoaRepositoryAdapter(PessoaRepository repository) {
         this.repository = repository;
     }
 

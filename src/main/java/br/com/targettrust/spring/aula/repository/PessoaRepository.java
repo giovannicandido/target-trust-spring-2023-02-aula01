@@ -1,19 +1,10 @@
 package br.com.targettrust.spring.aula.repository;
 
 import br.com.targettrust.spring.aula.model.Pessoa;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-/**
- * Operações que fizemos em pessoa
- * Esse é o contrato entre camadas, evite usar implementações diretamente entre camadas.
- */
-public interface PessoaRepository {
-    void deleteById(Integer id);
-
-    List<Pessoa> listAll();
-
-    void save(Pessoa pessoa);
-
-    void editPessoa(Pessoa pessoaNova, Integer id);
+public interface PessoaRepository extends JpaRepository<Pessoa, Integer> {
+    List<Pessoa> findPessoaByNome(String nome);
 }

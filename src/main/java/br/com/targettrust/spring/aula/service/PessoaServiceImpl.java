@@ -2,7 +2,6 @@ package br.com.targettrust.spring.aula.service;
 
 import br.com.targettrust.spring.aula.model.FilterSearchParams;
 import br.com.targettrust.spring.aula.model.Pessoa;
-import br.com.targettrust.spring.aula.repository.PessoaRepository;
 import jakarta.annotation.PreDestroy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,10 +18,10 @@ import java.util.stream.Stream;
 @Service // Cria um bean do tipo Service, não há diferença entre outros beans (com exceção de Controladores e Configurações)
 public class PessoaServiceImpl implements PessoaService {
     private final Logger logger = LoggerFactory.getLogger(PessoaServiceImpl.class);
-    private final PessoaRepository pessoaRepository;
+    private final PessoaServiceRepository pessoaRepository;
 
 
-    public PessoaServiceImpl(PessoaRepository pessoaRepository) {
+    public PessoaServiceImpl(PessoaServiceRepository pessoaRepository) {
         this.pessoaRepository = pessoaRepository;
     }
 
