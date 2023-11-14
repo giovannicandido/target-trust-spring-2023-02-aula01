@@ -18,7 +18,7 @@ import java.util.Optional;
  * Implementação padrão de uma lista em memória
  */
 @Repository // Diz ao spring que esse é um bean do tipo Repository (notar que não há diferenciação entre @Repository e @Service)
-@ConditionalOnProperty(name = "pessoas.salvar-em-disco", havingValue = "false") // Esse bean so existirá se essa condição for true, verifique o arquivo application.properties
+@ConditionalOnProperty(name = "pessoas.salvar-em-disco", havingValue = "false")// Esse bean so existirá se essa condição for true, verifique o arquivo application.properties
 public class PessoaRepositoryImpl implements PessoaRepository {
 
     private final Logger logger = LoggerFactory.getLogger(PessoaRepositoryImpl.class);
