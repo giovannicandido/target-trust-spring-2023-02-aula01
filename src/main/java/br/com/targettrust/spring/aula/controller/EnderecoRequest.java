@@ -1,37 +1,36 @@
-package br.com.targettrust.spring.aula.model;
+package br.com.targettrust.spring.aula.controller;
 
+import br.com.targettrust.spring.aula.model.Endereco;
+import br.com.targettrust.spring.aula.model.Estado;
 import jakarta.persistence.*;
 
-import java.util.Collection;
-
-@Entity
-@SequenceGenerator(name = "endereco_generator", sequenceName = "endereco_sequence")
-public class Endereco {
-    @Id
-    @GeneratedValue(generator = "endereco_generator" ,strategy = GenerationType.SEQUENCE)
-    private Long id;
-
-    @Column(name = "rua", length = 40, nullable = false)
+public class EnderecoRequest {
     private String logradouro;
 
     @Column(length = 40, nullable = false)
     private String bairro;
 
-    @Column(nullable = false)
     private Integer numero;
 
-    @Column(nullable = false, length = 50)
     private String cidade;
 
-    @Column(nullable = false, length = 2)
-    @Enumerated(EnumType.STRING)
     private Estado estado;
 
-    @Column(length = 16)
     private String cep;
 
-    @ManyToOne
-    private Pessoa pessoa;
+    private Integer pessoaId;
+
+    public Endereco toModel() {
+        Endereco endereco = new Endereco();
+        endereco.setCep(cep);
+        endereco.setBairro(bairro);
+        endereco.setCidade(cidade);
+        endereco.setEstado(estado);
+        endereco.setLogradouro(logradouro);
+        endereco.setNumero(numero);
+        return endereco;
+    }
+
 
     public String getLogradouro() {
         return logradouro;
@@ -81,19 +80,11 @@ public class Endereco {
         this.cep = cep;
     }
 
-    public Long getId() {
-        return id;
+    public Integer getPessoaId() {
+        return pessoaId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Pessoa getPessoa() {
-        return pessoa;
-    }
-
-    public void setPessoa(Pessoa pessoa) {
-        this.pessoa = pessoa;
+    public void setPessoaId(Integer pessoaId) {
+        this.pessoaId = pessoaId;
     }
 }

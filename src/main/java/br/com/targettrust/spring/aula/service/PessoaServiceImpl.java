@@ -6,6 +6,7 @@ import jakarta.annotation.PreDestroy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -31,6 +32,7 @@ public class PessoaServiceImpl implements PessoaService {
         logger.info("PreDestroy PessoaService");
     }
 
+    @Transactional
     @Override
     public void deleteById(Integer id) {
         pessoaRepository.deleteById(id);
@@ -47,14 +49,16 @@ public class PessoaServiceImpl implements PessoaService {
 
     }
 
+    @Transactional
     @Override
     public void save(Pessoa pessoa) {
         pessoaRepository.save(pessoa);
     }
 
+    @Transactional
     @Override
     public void editPessoa(Pessoa pessoaNova, Integer id) {
-        pessoaRepository.editPessoa(pessoaNova, id);
+        pessoaRepository.edit(pessoaNova, id);
     }
 
     @Override

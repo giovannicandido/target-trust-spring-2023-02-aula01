@@ -3,6 +3,7 @@ package br.com.targettrust.spring.aula.model;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.Collection;
 import java.util.List;
 
 @Entity
@@ -12,13 +13,19 @@ public class Pessoa {
     @Id
     @GeneratedValue(generator = "pessoa_seq", strategy = GenerationType.SEQUENCE)
     private Integer id;
+
+    @Column(length = 100)
     private String nome;
+
+    @Column(nullable = false)
     private LocalDate dataNascimento;
 
-    @OneToMany
+    @OneToMany(mappedBy = "pessoa")
     private List<Endereco> enderecos;
 
+
     @OneToOne
+    @JoinColumn(name = "cartao_credito_id", foreignKey = @ForeignKey(name = "fk_pessoa_cartao_credito"))
     private CartaoCredito cartaoCredito;
 
     public Pessoa(Integer id, String nome, LocalDate dataNascimento) {
