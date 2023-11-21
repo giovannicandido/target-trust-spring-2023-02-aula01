@@ -3,18 +3,26 @@ package br.com.targettrust.spring.aula.repository;
 import br.com.targettrust.spring.aula.model.Endereco;
 import br.com.targettrust.spring.aula.model.error.NotFoundException;
 import br.com.targettrust.spring.aula.service.EnderecoServiceRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Toda class Adapter (no caso o adapter de um ServiceRepository) irá implementar a logica da tecnologia
+ * Nesse caso é um banco de dados mas poderia ser uma fila de mensagem ou um arquivo, pouco importa
+ * Nosso serviço depende de EnderecoServiceRepository uma classe que está lá na camada dele,
+ * Aqui fornecemos a implementação. Notar que usamos um repository que é a tecnologia do spring data!
+ * Isso pode ser um pouco confuso mas depois que se acostoma faz sentido, existem projetos que não fazem isso!
+ * O MVC puro o service vai direto para o repository da tecnologia (spring) sem esse intermediario.
+ * Projetos maiores constumam fazer coisas parecidas
+ */
 @Repository
-public class EnderecoRepositoryAdapter implements EnderecoServiceRepository {
+// tanto faz se é um @Service ou @Repository na prática da na mesma, uso o @Repository só para ficar mais explicito
+@RequiredArgsConstructor // substitui o construtor para itens final
+public class EnderecoServiceRepositoryAdapter implements EnderecoServiceRepository {
     private final EnderecoRepository enderecoRepository;
-
-    public EnderecoRepositoryAdapter(EnderecoRepository enderecoRepository) {
-        this.enderecoRepository = enderecoRepository;
-    }
 
     @Override
     public void deleteById(Long id) {

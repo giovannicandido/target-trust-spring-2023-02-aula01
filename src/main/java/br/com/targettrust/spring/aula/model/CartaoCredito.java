@@ -4,6 +4,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.*;
 
+/**
+ * Olhar os comentários de {@link Endereco}
+ */
 @Entity
 @Getter
 @Setter

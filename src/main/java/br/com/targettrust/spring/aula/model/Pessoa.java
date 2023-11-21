@@ -6,6 +6,9 @@ import lombok.*;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * Olhar os comentários de {@link Endereco}
+ */
 @Entity
 @SequenceGenerator(name = "pessoa_seq", initialValue = 1, allocationSize = 1)
 @Builder

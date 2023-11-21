@@ -7,6 +7,9 @@ import lombok.Data;
 
 import java.time.LocalDate;
 
+/**
+ * Veja comentários em {@link EnderecoResponse} o mesmo se aplica aqui
+ */
 @Data
 @Builder
 public class PessoaResponse {

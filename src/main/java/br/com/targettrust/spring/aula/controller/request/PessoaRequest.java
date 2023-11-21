@@ -19,6 +19,12 @@ public class PessoaRequest {
     @PastOrPresent
     private LocalDate dataNascimento;
 
+    /**
+     * Não vamos passar para dentro da aplicação (camadas internas) coisas da API (request e response)
+     * Aqui transformamos os dados para passar para outras camadas.
+     *
+     * @return
+     */
     public Pessoa toModel() {
         return Pessoa.builder()
                 .nome(nome)

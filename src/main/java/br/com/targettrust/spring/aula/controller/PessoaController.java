@@ -5,6 +5,7 @@ import br.com.targettrust.spring.aula.controller.response.PessoaResponse;
 import br.com.targettrust.spring.aula.model.FilterSearchParams;
 import br.com.targettrust.spring.aula.service.PessoaService;
 import io.swagger.v3.oas.annotations.Operation;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -49,7 +50,7 @@ public class PessoaController {
     }
 
     @PostMapping // Esse metodo vai ser ativado se um POST for enviado para /pessoas
-    public void salvarPessoas(@RequestBody PessoaRequest pessoa // Pessoa vai vir do body da requisição e vai ser um json representando a pessoa.
+    public void salvarPessoas(@RequestBody @Valid PessoaRequest pessoa // Pessoa vai vir do body da requisição e vai ser um json representando a pessoa.
 
     ) {
         pessoaService.save(pessoa.toModel());
@@ -69,7 +70,7 @@ public class PessoaController {
     // Esse metodo vai ser ativado se um PUT for enviado para /pessoas/{id} onde {id} pode ser qualquer coisa
     @ResponseStatus(HttpStatus.OK)
     // responde com um ok, nesse caso redundante pois retornamos um ok manual no final do metodo
-    public ResponseEntity editarPessoa(@RequestBody PessoaRequest pessoaNova, @PathVariable Integer id) {
+    public ResponseEntity editarPessoa(@RequestBody @Valid PessoaRequest pessoaNova, @PathVariable Integer id) {
         pessoaService.editPessoa(pessoaNova.toModel(), id);
         return ResponseEntity.ok().build(); // resposta manual
     }

@@ -6,12 +6,13 @@ import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.Builder;
 import lombok.Data;
 
-
+/**
+ * Essa é uma classe de dados feita apenas para conter informações ou representar uma informação
+ * Por isso é comum que se use @Data ou @Value (imutável)
+ */
 @Data
-@Builder
 public class EnderecoRequest {
 
     @NotBlank
@@ -36,6 +37,12 @@ public class EnderecoRequest {
     @NotNull
     private Integer pessoaId;
 
+    /**
+     * Não vamos passar para dentro da aplicação (camadas internas) coisas da API (request e response)
+     * Aqui transformamos os dados para passar para outras camadas.
+     *
+     * @return
+     */
     public Endereco toModel() {
         return Endereco.builder()
                 .cep(cep)

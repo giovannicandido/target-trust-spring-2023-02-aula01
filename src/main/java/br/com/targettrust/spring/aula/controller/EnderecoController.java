@@ -17,6 +17,12 @@ public class EnderecoController {
 
     private final EnderecoService enderecoService;
 
+    /**
+     * Nao vamos retornar a entidade direto, vimos o problemas que pode causar.
+     * Vamos sempre retornar uma Response de api (famoso DTO - Data Transfer Object)
+     *
+     * @return Lista de EnderecoResponse que é nosso modelo de API e não de banco de dados
+     */
     @GetMapping
     public List<EnderecoResponse> getEnderecos() {
         return enderecoService.listAll()
@@ -24,6 +30,11 @@ public class EnderecoController {
                 .toList();
     }
 
+    /**
+     * Salvamos um endereço, também não recebemos a entidade e sim um modelo de API
+     * A anotação @Valid vai validar a request. Veja {@link EnderecoRequest} onde tem anotações de validações as propriedades
+     * @param endereco
+     */
     @PostMapping
     public void saveEnderecos(@RequestBody @Valid EnderecoRequest endereco) {
 

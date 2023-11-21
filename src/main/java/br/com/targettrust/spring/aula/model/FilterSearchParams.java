@@ -14,6 +14,13 @@ public class FilterSearchParams {
     private final String nome;
     private final List<Integer> ids;
 
+    /**
+     * Se for criado um construtor essa vai sobrescrever o do lombok @Value cria um construtor com todos os itens
+     *
+     * @param idade
+     * @param nome
+     * @param ids
+     */
     public FilterSearchParams(Integer idade, String nome, List<Integer> ids) {
         this.idade = idade;
         this.nome = nome;

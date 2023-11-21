@@ -6,7 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 
 @Builder
-@Data
+@Data // Bem comum usar o padrão builder veja o metodo Get do controlador de endereço que vai criar essa response
 public class EnderecoResponse {
 
     private String logradouro;
@@ -16,6 +16,12 @@ public class EnderecoResponse {
     private Estado estado;
     private String cep;
 
+    /**
+     * Vamos transformar um model/dominio para sua resposta de API usando esse método
+     *
+     * @param endereco Model
+     * @return Response
+     */
     public static EnderecoResponse of(Endereco endereco) {
         return EnderecoResponse.builder()
                 .cep(endereco.getCep())
