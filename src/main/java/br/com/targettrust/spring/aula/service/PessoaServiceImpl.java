@@ -16,7 +16,8 @@ import java.util.stream.Stream;
 /**
  * Implementação do serviço de pessoas
  */
-@Service // Cria um bean do tipo Service, não há diferença entre outros beans (com exceção de Controladores e Configurações)
+@Service
+// Cria um bean do tipo Service, não há diferença entre outros beans (com exceção de Controladores e Configurações)
 public class PessoaServiceImpl implements PessoaService {
     private final Logger logger = LoggerFactory.getLogger(PessoaServiceImpl.class);
     private final PessoaServiceRepository pessoaRepository;
@@ -80,23 +81,23 @@ public class PessoaServiceImpl implements PessoaService {
         Stream<Pessoa> pessoaStream = pessoaRepository.listAll()
                 .stream();
 
-        if(params.getNome() != null && params.getIdade() != null) {
+        if (params.getNome() != null && params.getIdade() != null) {
             pessoaStream = pessoaStream.filter(pessoa -> {
                 return pessoa.getNome().startsWith(params.getNome()) || idadeMenorQue(params.getIdade(), pessoa.getDataNascimento());
             });
-            if(!params.getIds().isEmpty()) {
+            if (!params.getIds().isEmpty()) {
                 pessoaStream = pessoaStream.filter(pessoa -> params.getIds().contains(pessoa.getId()));
             }
         } else {
-            if(params.getNome() != null) {
+            if (params.getNome() != null) {
                 pessoaStream = pessoaStream.filter(pessoa -> pessoa.getNome().startsWith(params.getNome()));
             }
 
-            if(!params.getIds().isEmpty()) {
+            if (!params.getIds().isEmpty()) {
                 pessoaStream = pessoaStream.filter(pessoa -> params.getIds().contains(pessoa.getId()));
             }
 
-            if(params.getIdade() != null) {
+            if (params.getIdade() != null) {
                 pessoaStream = pessoaStream.filter(pessoa -> idadeMenorQue(params.getIdade(), pessoa.getDataNascimento()));
             }
         }

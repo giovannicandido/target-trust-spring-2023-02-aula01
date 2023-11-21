@@ -3,9 +3,9 @@ package br.com.targettrust.spring.aula.controller;
 import br.com.targettrust.spring.aula.controller.request.PessoaRequest;
 import br.com.targettrust.spring.aula.controller.response.PessoaResponse;
 import br.com.targettrust.spring.aula.model.FilterSearchParams;
-import br.com.targettrust.spring.aula.model.Pessoa;
 import br.com.targettrust.spring.aula.service.PessoaService;
 import io.swagger.v3.oas.annotations.Operation;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,18 +17,16 @@ import java.util.List;
  */
 @RestController // diz ao spring que é um controlador rest
 @RequestMapping(path = "/pessoas") // Qual URL a classe escuta (http://localhost:8080/pessoas
+@RequiredArgsConstructor // lombok para criar construtor com todos os items private final
 public class PessoaController {
 
     // vamos receber no construtor e PessoaService vai ser injeção
+    // injeção de dependencias por construtor.
     private final PessoaService pessoaService;
 
-    // injeção de dependencias por construtor.
-    public PessoaController(PessoaService pessoaService) {
-        this.pessoaService = pessoaService;
-    }
-
-    @GetMapping() // Esse metodo vai ser ativado se um GET for enviado para /pessoas
-    @Operation(description = "Lista pessoas no banco de dados", summary = "Lista Pessoas") // usando o swagger para personalizar a documentação. Acesse http://localhost:8080/swagger-ui/index.html
+    @GetMapping // Esse metodo vai ser ativado se um GET for enviado para /pessoas
+    @Operation(description = "Lista pessoas no banco de dados", summary = "Lista Pessoas")
+    // usando o swagger para personalizar a documentação. Acesse http://localhost:8080/swagger-ui/index.html
     public List<PessoaResponse> getPessoas() {
         return pessoaService.listAll()
                 .stream()
@@ -51,13 +49,14 @@ public class PessoaController {
     }
 
     @PostMapping // Esse metodo vai ser ativado se um POST for enviado para /pessoas
-    public void salvar(@RequestBody PessoaRequest pessoa // Pessoa vai vir do body da requisição e vai ser um json representando a pessoa.
+    public void salvarPessoas(@RequestBody PessoaRequest pessoa // Pessoa vai vir do body da requisição e vai ser um json representando a pessoa.
 
     ) {
         pessoaService.save(pessoa.toModel());
     }
 
-    @DeleteMapping("/{id}") // Esse metodo vai ser ativado se um DELETE for enviado para /pessoas/{id} onde {id} pode ser qualquer coisa
+    @DeleteMapping("/{id}")
+    // Esse metodo vai ser ativado se um DELETE for enviado para /pessoas/{id} onde {id} pode ser qualquer coisa
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity deleteById(@PathVariable(name = "id") Integer idPessoa // @PathVariable pega a informação do id na url no caso em /pessoas/{id}
     ) {
@@ -66,8 +65,10 @@ public class PessoaController {
 
     }
 
-    @PutMapping("/{id}") // Esse metodo vai ser ativado se um PUT for enviado para /pessoas/{id} onde {id} pode ser qualquer coisa
-    @ResponseStatus(HttpStatus.OK) // responde com um ok, nesse caso redundante pois retornamos um ok manual no final do metodo
+    @PutMapping("/{id}")
+    // Esse metodo vai ser ativado se um PUT for enviado para /pessoas/{id} onde {id} pode ser qualquer coisa
+    @ResponseStatus(HttpStatus.OK)
+    // responde com um ok, nesse caso redundante pois retornamos um ok manual no final do metodo
     public ResponseEntity editarPessoa(@RequestBody PessoaRequest pessoaNova, @PathVariable Integer id) {
         pessoaService.editPessoa(pessoaNova.toModel(), id);
         return ResponseEntity.ok().build(); // resposta manual

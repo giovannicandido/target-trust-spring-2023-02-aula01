@@ -2,7 +2,8 @@ package br.com.targettrust.spring.aula.controller.response;
 
 import br.com.targettrust.spring.aula.model.Endereco;
 import br.com.targettrust.spring.aula.model.Estado;
-import lombok.*;
+import lombok.Builder;
+import lombok.Data;
 
 @Builder
 @Data

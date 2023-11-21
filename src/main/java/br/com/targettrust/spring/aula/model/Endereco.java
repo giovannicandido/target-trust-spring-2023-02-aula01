@@ -14,7 +14,7 @@ import lombok.*;
 @ToString(exclude = "pessoa")
 public class Endereco {
     @Id
-    @GeneratedValue(generator = "endereco_generator" ,strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(generator = "endereco_generator", strategy = GenerationType.SEQUENCE)
     private Long id;
 
     @Column(name = "rua", length = 40, nullable = false, unique = true)

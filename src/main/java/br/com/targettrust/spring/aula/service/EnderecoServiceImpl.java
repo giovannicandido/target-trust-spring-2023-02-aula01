@@ -23,6 +23,11 @@ public class EnderecoServiceImpl implements EnderecoService {
         return enderecoServiceRepository.listAll();
     }
 
+    @Override
+    public void deleteById(Long id) {
+        enderecoServiceRepository.deleteById(id);
+    }
+
     @Transactional
     @Override
     public void save(Endereco endereco, Integer pessoaId) {

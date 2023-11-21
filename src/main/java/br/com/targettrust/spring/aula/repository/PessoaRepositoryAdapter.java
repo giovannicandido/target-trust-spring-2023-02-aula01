@@ -36,7 +36,7 @@ public class PessoaRepositoryAdapter implements PessoaServiceRepository {
     public void edit(Pessoa pessoaNova, Integer id) {
         Optional<Pessoa> pessoaExistente = repository.findById(id);
 
-        if(pessoaExistente.isEmpty()) {
+        if (pessoaExistente.isEmpty()) {
             throw new NotFoundException("Pessoa", id.toString());
         }
 
@@ -47,6 +47,6 @@ public class PessoaRepositoryAdapter implements PessoaServiceRepository {
 
     @Override
     public Pessoa findById(Integer id) {
-       return repository.findById(id).orElseThrow(() -> new NotFoundException("Pessoa", id.toString()));
+        return repository.findById(id).orElseThrow(() -> new NotFoundException("Pessoa", id.toString()));
     }
 }

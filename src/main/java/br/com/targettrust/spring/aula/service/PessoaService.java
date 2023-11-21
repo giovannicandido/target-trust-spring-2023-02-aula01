@@ -8,10 +8,7 @@ import java.util.List;
 /**
  * Operações do serviço de pessoa
  */
-public interface PessoaService {
-    void deleteById(Integer id);
-
-    List<Pessoa> listAll();
+public interface PessoaService extends CommonCrudService<Pessoa, Integer> {
 
     void simularError();
 

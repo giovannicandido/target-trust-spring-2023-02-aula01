@@ -35,7 +35,7 @@ public class EnderecoRepositoryAdapter implements EnderecoServiceRepository {
     public void edit(Endereco enderecoNovo, Long id) {
         Optional<Endereco> enderecoExistente = enderecoRepository.findById(id);
 
-        if(enderecoExistente.isEmpty()) {
+        if (enderecoExistente.isEmpty()) {
             throw new NotFoundException("Endereco", id.toString());
         }
 

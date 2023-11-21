@@ -1,6 +1,4 @@
-package br.com.targettrust.spring.aula.service;
-
-import br.com.targettrust.spring.aula.model.Pessoa;
+package br.com.targettrust.spring.aula.repository;
 
 import java.util.List;
 

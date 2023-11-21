@@ -2,8 +2,12 @@ package br.com.targettrust.spring.aula.controller.request;
 
 import br.com.targettrust.spring.aula.model.Endereco;
 import br.com.targettrust.spring.aula.model.Estado;
-import jakarta.validation.constraints.*;
-import lombok.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import lombok.Builder;
+import lombok.Data;
 
 
 @Data
@@ -33,13 +37,13 @@ public class EnderecoRequest {
     private Integer pessoaId;
 
     public Endereco toModel() {
-        Endereco endereco = new Endereco();
-        endereco.setCep(cep);
-        endereco.setBairro(bairro);
-        endereco.setCidade(cidade);
-        endereco.setEstado(estado);
-        endereco.setLogradouro(logradouro);
-        endereco.setNumero(numero);
-        return endereco;
+        return Endereco.builder()
+                .cep(cep)
+                .bairro(bairro)
+                .cidade(cidade)
+                .estado(estado)
+                .logradouro(logradouro)
+                .numero(numero)
+                .build();
     }
 }
