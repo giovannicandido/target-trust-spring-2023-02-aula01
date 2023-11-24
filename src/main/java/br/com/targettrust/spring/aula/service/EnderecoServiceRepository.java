@@ -3,6 +3,8 @@ package br.com.targettrust.spring.aula.service;
 import br.com.targettrust.spring.aula.model.Endereco;
 import br.com.targettrust.spring.aula.repository.CrudServiceRepository;
 
+import java.util.List;
+
 /**
  * Essa classe está em service pois ela é o que o service de Endereco espera que um repository implemente, a logica aqui é inversa
  * Nosso service não deveria depender de uma tecnologia explicitamente, então ele depende apenas de uma interface
@@ -30,4 +32,7 @@ import br.com.targettrust.spring.aula.repository.CrudServiceRepository;
  * @param <Long>     The type of the ID of the entity.
  */
 public interface EnderecoServiceRepository extends CrudServiceRepository<Endereco, Long> {
+    List<Endereco> searchByRua(String rua);
+
+    List<Endereco> searchByNomePessoa(String nomePessoa);
 }

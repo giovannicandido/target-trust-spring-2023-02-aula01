@@ -29,7 +29,7 @@ public class Pessoa {
     @Column(nullable = false)
     private LocalDate dataNascimento;
 
-    @OneToMany(mappedBy = "pessoa")
+    @OneToMany(mappedBy = "pessoa", fetch = FetchType.LAZY)
     private List<Endereco> enderecos;
 
     @OneToOne

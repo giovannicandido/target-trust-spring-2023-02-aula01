@@ -48,4 +48,14 @@ public class EnderecoServiceImpl implements EnderecoService {
         endereco.setPessoa(pessoaById); // O JPA entende que existe a relação e quando salvarmos endereço ele vai fazer o insert correto passando o id de pessoa na JoinColum de pessoa_id
         enderecoServiceRepository.save(endereco);
     }
+
+    @Override
+    public List<Endereco> searchByRua(String rua) {
+        return enderecoServiceRepository.searchByRua(rua);
+    }
+
+    @Override
+    public List<Endereco> searchByNomePessoa(String nomePessoa) {
+        return enderecoServiceRepository.searchByNomePessoa(nomePessoa);
+    }
 }

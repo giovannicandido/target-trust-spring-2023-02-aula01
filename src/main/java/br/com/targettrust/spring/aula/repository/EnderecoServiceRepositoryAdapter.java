@@ -22,7 +22,9 @@ import java.util.Optional;
 // tanto faz se é um @Service ou @Repository na prática da na mesma, uso o @Repository só para ficar mais explicito
 @RequiredArgsConstructor // substitui o construtor para itens final
 public class EnderecoServiceRepositoryAdapter implements EnderecoServiceRepository {
+
     private final EnderecoRepository enderecoRepository;
+    private final PessoaRepository pessoaRepository;
 
     @Override
     public void deleteById(Long id) {
@@ -56,4 +58,35 @@ public class EnderecoServiceRepositoryAdapter implements EnderecoServiceReposito
     public Endereco findById(Long id) {
         return enderecoRepository.findById(id).orElseThrow(() -> new NotFoundException("Endereco", id.toString()));
     }
+
+    @Override
+    public List<Endereco> searchByRua(String rua) {
+        rua = makeLike(rua);
+//        return enderecoRepository.findEnderecoByLogradouro(rua);
+        return enderecoRepository.findAllByLogradouroIsLikeWithProjection(rua)
+                .stream()
+                .map(enderecoProjection -> Endereco.builder()
+                        .numero(enderecoProjection.getNumero())
+                        .logradouro(enderecoProjection.getLogradouro())
+                        .build())
+                .toList();
+    }
+
+    @Override
+    public List<Endereco> searchByNomePessoa(String nomePessoa) {
+        nomePessoa = makeLike(nomePessoa);
+        return enderecoRepository.findEnderecoByPessoaNome(nomePessoa);
+
+//        Pessoa pessoa = pessoaRepository.findPessoaByNomeLikeIgnoreCase(nomePessoa);
+//        if (pessoa == null) {
+//            throw new NotFoundException("Pessoa", nomePessoa);
+//        }
+
+    }
+
+    private static String makeLike(String param) {
+        param = "%" + param + "%";
+        return param;
+    }
+
 }

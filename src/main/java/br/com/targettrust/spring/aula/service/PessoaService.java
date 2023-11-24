@@ -1,5 +1,6 @@
 package br.com.targettrust.spring.aula.service;
 
+import br.com.targettrust.spring.aula.controller.request.PagamentoRequest;
 import br.com.targettrust.spring.aula.model.FilterSearchParams;
 import br.com.targettrust.spring.aula.model.Pessoa;
 
@@ -19,4 +20,6 @@ public interface PessoaService extends CommonCrudService<Pessoa, Integer> {
     List<Pessoa> filtrarPeloNome(String name);
 
     List<Pessoa> filtrar(FilterSearchParams params);
+
+    Integer realizarPagamento(Integer idPessoa, PagamentoRequest pagamentoRequest);
 }

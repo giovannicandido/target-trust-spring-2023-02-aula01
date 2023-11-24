@@ -1,6 +1,8 @@
 package br.com.targettrust.spring.aula.controller;
 
+import br.com.targettrust.spring.aula.controller.request.PagamentoRequest;
 import br.com.targettrust.spring.aula.controller.request.PessoaRequest;
+import br.com.targettrust.spring.aula.controller.response.PagamentoRealizadoResponse;
 import br.com.targettrust.spring.aula.controller.response.PessoaResponse;
 import br.com.targettrust.spring.aula.model.FilterSearchParams;
 import br.com.targettrust.spring.aula.service.PessoaService;
@@ -73,6 +75,14 @@ public class PessoaController {
     public ResponseEntity editarPessoa(@RequestBody @Valid PessoaRequest pessoaNova, @PathVariable Integer id) {
         pessoaService.editPessoa(pessoaNova.toModel(), id);
         return ResponseEntity.ok().build(); // resposta manual
+    }
+
+    @PostMapping(path = "/{id}/pagamento")
+    @ResponseStatus(HttpStatus.OK)
+    public PagamentoRealizadoResponse realizarPagamento(@PathVariable("id") Integer idPessoa,
+                                                        @RequestBody @Valid PagamentoRequest pagamentoRequest) {
+
+        return new PagamentoRealizadoResponse(pessoaService.realizarPagamento(idPessoa, pagamentoRequest));
     }
 
 }

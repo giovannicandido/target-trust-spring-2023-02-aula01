@@ -2,6 +2,8 @@ package br.com.targettrust.spring.aula.service;
 
 import br.com.targettrust.spring.aula.model.Endereco;
 
+import java.util.List;
+
 public interface EnderecoService extends CommonCrudService<Endereco, Long> {
     /**
      * Notar que o save não está na CommonCrudService porque aqui salvamos um pouco diferente,
@@ -11,4 +13,8 @@ public interface EnderecoService extends CommonCrudService<Endereco, Long> {
      * @param pessoaId
      */
     void save(Endereco endereco, Integer pessoaId);
+
+    List<Endereco> searchByRua(String rua);
+
+    List<Endereco> searchByNomePessoa(String nomePessoa);
 }

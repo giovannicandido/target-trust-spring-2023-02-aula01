@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface PessoaRepository extends JpaRepository<Pessoa, Integer> {
     List<Pessoa> findPessoaByNome(String nome);
+
+    Pessoa findPessoaByNomeLikeIgnoreCase(String nome);
 }

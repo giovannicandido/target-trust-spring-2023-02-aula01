@@ -1,14 +1,21 @@
 package br.com.targettrust.spring.aula.service;
 
+import br.com.targettrust.spring.aula.controller.request.PagamentoRequest;
+import br.com.targettrust.spring.aula.model.Endereco;
 import br.com.targettrust.spring.aula.model.FilterSearchParams;
+import br.com.targettrust.spring.aula.model.Pagamento;
 import br.com.targettrust.spring.aula.model.Pessoa;
+import br.com.targettrust.spring.aula.model.error.EnderecoNaoLocalizadoException;
+import br.com.targettrust.spring.aula.repository.PagamentoRepository;
 import jakarta.annotation.PreDestroy;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.stream.Stream;
@@ -17,15 +24,22 @@ import java.util.stream.Stream;
  * Implementação do serviço de pessoas
  */
 @Service
+@RequiredArgsConstructor
 // Cria um bean do tipo Service, não há diferença entre outros beans (com exceção de Controladores e Configurações)
 public class PessoaServiceImpl implements PessoaService {
     private final Logger logger = LoggerFactory.getLogger(PessoaServiceImpl.class);
+
     private final PessoaServiceRepository pessoaRepository;
 
+    private final CepExternalService cepExternalService;
 
-    public PessoaServiceImpl(PessoaServiceRepository pessoaRepository) {
-        this.pessoaRepository = pessoaRepository;
-    }
+    private final EnderecoServiceRepository enderecoServiceRepository;
+
+    private final CartaoService cartaoService;
+
+    private final PagamentoRepository pagamentoRepository;
+
+    private final EmailExternalService emailExternalService;
 
 
     @PreDestroy // So executa antes de remover o bean PessoaServiceImpl da memória ram
@@ -104,6 +118,42 @@ public class PessoaServiceImpl implements PessoaService {
 
         return pessoaStream.toList();
 
+    }
+
+    @Transactional
+    @Override
+    public Integer realizarPagamento(Integer idPessoa, PagamentoRequest pagamentoRequest) {
+
+        Pessoa pessoa = pessoaRepository.findById(idPessoa);
+
+        // pesquisa endereco pelo cep
+        // se enderco não localizado retorna not found
+
+        Endereco endereco = cepExternalService.searchEnderecoByCep(pagamentoRequest.getCep())
+                .orElseThrow(() -> new EnderecoNaoLocalizadoException(pagamentoRequest.getCep()));
+
+        // salvar o endereco no banco
+        enderecoServiceRepository.save(endereco);
+
+        // salvar o cartao de credito da pessoa no banco
+        cartaoService.salvarEvalidarCartao(pagamentoRequest.getNumeroCartao(), pessoa);
+
+        // simular o pagamento (salvar o pagamento)
+
+        Pagamento pagamento = Pagamento.builder()
+                .dataPagamento(LocalDateTime.now())
+                .pagador(pessoa)
+                .build();
+
+        pagamento = pagamentoRepository.save(pagamento);
+
+        // simular envio de email
+
+        emailExternalService.enviarEmail(pagamentoRequest.getEmail(), "Pagamento realizado com sucesso", "Novo pagamento criado");
+
+        // retornar o id do pagamento
+
+        return Math.toIntExact(pagamento.getId());
     }
 
     private boolean idadeMenorQue(Integer idade, LocalDate dataNascimento) {
