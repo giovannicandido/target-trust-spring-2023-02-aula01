@@ -1,10 +1,6 @@
 package br.com.targettrust.spring.aula.service;
 
-import br.com.targettrust.spring.aula.controller.request.PagamentoRequest;
-import br.com.targettrust.spring.aula.model.Endereco;
-import br.com.targettrust.spring.aula.model.FilterSearchParams;
-import br.com.targettrust.spring.aula.model.Pagamento;
-import br.com.targettrust.spring.aula.model.Pessoa;
+import br.com.targettrust.spring.aula.model.*;
 import br.com.targettrust.spring.aula.model.error.EnderecoNaoLocalizadoException;
 import br.com.targettrust.spring.aula.repository.PagamentoRepository;
 import jakarta.annotation.PreDestroy;
@@ -122,7 +118,7 @@ public class PessoaServiceImpl implements PessoaService {
 
     @Transactional
     @Override
-    public Integer realizarPagamento(Integer idPessoa, PagamentoRequest pagamentoRequest) {
+    public Integer realizarPagamento(Integer idPessoa, IniciarPagamento pagamentoRequest) {
 
         Pessoa pessoa = pessoaRepository.findById(idPessoa);
 
@@ -131,6 +127,9 @@ public class PessoaServiceImpl implements PessoaService {
 
         Endereco endereco = cepExternalService.searchEnderecoByCep(pagamentoRequest.getCep())
                 .orElseThrow(() -> new EnderecoNaoLocalizadoException(pagamentoRequest.getCep()));
+
+        endereco.setNumero(pagamentoRequest.getNumero());
+        endereco.setPessoa(pessoa);
 
         // salvar o endereco no banco
         enderecoServiceRepository.save(endereco);

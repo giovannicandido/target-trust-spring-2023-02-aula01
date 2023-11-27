@@ -82,7 +82,7 @@ public class PessoaController {
     public PagamentoRealizadoResponse realizarPagamento(@PathVariable("id") Integer idPessoa,
                                                         @RequestBody @Valid PagamentoRequest pagamentoRequest) {
 
-        return new PagamentoRealizadoResponse(pessoaService.realizarPagamento(idPessoa, pagamentoRequest));
+        return new PagamentoRealizadoResponse(pessoaService.realizarPagamento(idPessoa, pagamentoRequest.toModel()));
     }
 
 }
