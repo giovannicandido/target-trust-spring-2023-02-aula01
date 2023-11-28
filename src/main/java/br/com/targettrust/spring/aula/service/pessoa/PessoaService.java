@@ -22,5 +22,6 @@ public interface PessoaService extends CommonCrudService<Pessoa, Integer> {
 
     List<Pessoa> filtrar(PessoaSearchParams params);
 
+    // todo isso deveria estar em pagamento
     Integer realizarPagamento(Integer idPessoa, IniciarPagamento pagamentoRequest);
 }
