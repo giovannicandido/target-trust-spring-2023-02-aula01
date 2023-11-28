@@ -1,6 +1,6 @@
 package br.com.targettrust.spring.aula.controller.request;
 
-import br.com.targettrust.spring.aula.model.IniciarPagamento;
+import br.com.targettrust.spring.aula.model.pagamento.IniciarPagamento;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

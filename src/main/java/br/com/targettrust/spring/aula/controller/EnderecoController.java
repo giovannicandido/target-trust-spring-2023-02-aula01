@@ -3,8 +3,8 @@ package br.com.targettrust.spring.aula.controller;
 
 import br.com.targettrust.spring.aula.controller.request.EnderecoRequest;
 import br.com.targettrust.spring.aula.controller.response.EnderecoResponse;
-import br.com.targettrust.spring.aula.model.Endereco;
-import br.com.targettrust.spring.aula.service.EnderecoService;
+import br.com.targettrust.spring.aula.model.pessoa.Endereco;
+import br.com.targettrust.spring.aula.service.pessoa.EnderecoService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

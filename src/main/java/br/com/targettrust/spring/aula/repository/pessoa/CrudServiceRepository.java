@@ -1,4 +1,4 @@
-package br.com.targettrust.spring.aula.repository;
+package br.com.targettrust.spring.aula.repository.pessoa;
 
 import java.util.List;
 

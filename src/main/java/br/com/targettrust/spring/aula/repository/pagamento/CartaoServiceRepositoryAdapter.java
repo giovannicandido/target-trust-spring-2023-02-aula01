@@ -1,8 +1,8 @@
-package br.com.targettrust.spring.aula.repository;
+package br.com.targettrust.spring.aula.repository.pagamento;
 
-import br.com.targettrust.spring.aula.model.CartaoCredito;
 import br.com.targettrust.spring.aula.model.error.NotFoundException;
-import br.com.targettrust.spring.aula.service.CartaoServiceRepository;
+import br.com.targettrust.spring.aula.model.pagamento.CartaoCredito;
+import br.com.targettrust.spring.aula.service.pagamento.CartaoServiceRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 

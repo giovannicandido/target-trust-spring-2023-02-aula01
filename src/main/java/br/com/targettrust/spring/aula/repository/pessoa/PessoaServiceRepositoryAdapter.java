@@ -1,8 +1,8 @@
-package br.com.targettrust.spring.aula.repository;
+package br.com.targettrust.spring.aula.repository.pessoa;
 
-import br.com.targettrust.spring.aula.model.Pessoa;
 import br.com.targettrust.spring.aula.model.error.NotFoundException;
-import br.com.targettrust.spring.aula.service.PessoaServiceRepository;
+import br.com.targettrust.spring.aula.model.pessoa.Pessoa;
+import br.com.targettrust.spring.aula.service.pessoa.PessoaServiceRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 

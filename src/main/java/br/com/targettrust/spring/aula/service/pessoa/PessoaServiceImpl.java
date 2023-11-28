@@ -1,8 +1,15 @@
-package br.com.targettrust.spring.aula.service;
+package br.com.targettrust.spring.aula.service.pessoa;
 
-import br.com.targettrust.spring.aula.model.*;
 import br.com.targettrust.spring.aula.model.error.EnderecoNaoLocalizadoException;
-import br.com.targettrust.spring.aula.repository.PagamentoRepository;
+import br.com.targettrust.spring.aula.model.pagamento.IniciarPagamento;
+import br.com.targettrust.spring.aula.model.pagamento.Pagamento;
+import br.com.targettrust.spring.aula.model.pessoa.Endereco;
+import br.com.targettrust.spring.aula.model.pessoa.Pessoa;
+import br.com.targettrust.spring.aula.model.pessoa.PessoaSearchParams;
+import br.com.targettrust.spring.aula.repository.pagamento.PagamentoRepository;
+import br.com.targettrust.spring.aula.service.external.CepExternalService;
+import br.com.targettrust.spring.aula.service.external.EmailExternalService;
+import br.com.targettrust.spring.aula.service.pagamento.CartaoService;
 import jakarta.annotation.PreDestroy;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -81,7 +88,7 @@ public class PessoaServiceImpl implements PessoaService {
     }
 
     @Override
-    public List<Pessoa> filtrar(FilterSearchParams params) {
+    public List<Pessoa> filtrar(PessoaSearchParams params) {
 
         // A logica de filtro abaixo seria melhor executada em um banco de dados
         // Podemos refatorar quando tivermos introduzido banco.

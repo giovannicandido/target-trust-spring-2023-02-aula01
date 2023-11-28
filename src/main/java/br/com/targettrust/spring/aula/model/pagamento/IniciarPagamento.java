@@ -1,4 +1,4 @@
-package br.com.targettrust.spring.aula.model;
+package br.com.targettrust.spring.aula.model.pagamento;
 
 import lombok.Builder;
 import lombok.Value;

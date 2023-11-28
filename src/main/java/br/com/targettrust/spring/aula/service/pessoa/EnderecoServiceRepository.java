@@ -1,7 +1,7 @@
-package br.com.targettrust.spring.aula.service;
+package br.com.targettrust.spring.aula.service.pessoa;
 
-import br.com.targettrust.spring.aula.model.Endereco;
-import br.com.targettrust.spring.aula.repository.CrudServiceRepository;
+import br.com.targettrust.spring.aula.model.pessoa.Endereco;
+import br.com.targettrust.spring.aula.repository.pessoa.CrudServiceRepository;
 
 import java.util.List;
 

@@ -4,8 +4,8 @@ import br.com.targettrust.spring.aula.controller.request.PagamentoRequest;
 import br.com.targettrust.spring.aula.controller.request.PessoaRequest;
 import br.com.targettrust.spring.aula.controller.response.PagamentoRealizadoResponse;
 import br.com.targettrust.spring.aula.controller.response.PessoaResponse;
-import br.com.targettrust.spring.aula.model.FilterSearchParams;
-import br.com.targettrust.spring.aula.service.PessoaService;
+import br.com.targettrust.spring.aula.model.pessoa.PessoaSearchParams;
+import br.com.targettrust.spring.aula.service.pessoa.PessoaService;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -43,7 +43,7 @@ public class PessoaController {
                                                 @RequestParam(required = false) Integer idade,
                                                 @RequestParam(required = false) List<Integer> ids) {
 
-        FilterSearchParams searchParams = new FilterSearchParams(idade, name, ids);
+        PessoaSearchParams searchParams = new PessoaSearchParams(idade, name, ids);
 
         return pessoaService.filtrar(searchParams)
                 .stream()

@@ -1,4 +1,4 @@
-package br.com.targettrust.spring.aula.model;
+package br.com.targettrust.spring.aula.model.pessoa;
 
 import jakarta.persistence.*;
 import lombok.*;

@@ -1,6 +1,6 @@
 package br.com.targettrust.spring.aula.external;
 
-import br.com.targettrust.spring.aula.service.EmailExternalService;
+import br.com.targettrust.spring.aula.service.external.EmailExternalService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

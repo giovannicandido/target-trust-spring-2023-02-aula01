@@ -1,7 +1,7 @@
 package br.com.targettrust.spring.aula.controller.response;
 
 
-import br.com.targettrust.spring.aula.model.Pessoa;
+import br.com.targettrust.spring.aula.model.pessoa.Pessoa;
 import lombok.Builder;
 import lombok.Data;
 

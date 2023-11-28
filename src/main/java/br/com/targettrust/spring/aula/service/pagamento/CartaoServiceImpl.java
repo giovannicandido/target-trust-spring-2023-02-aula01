@@ -1,8 +1,8 @@
-package br.com.targettrust.spring.aula.service;
+package br.com.targettrust.spring.aula.service.pagamento;
 
-import br.com.targettrust.spring.aula.model.CartaoCredito;
-import br.com.targettrust.spring.aula.model.Pessoa;
 import br.com.targettrust.spring.aula.model.error.OutraPessoaPossuiEsseCartaoException;
+import br.com.targettrust.spring.aula.model.pagamento.CartaoCredito;
+import br.com.targettrust.spring.aula.model.pessoa.Pessoa;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,6 @@
-package br.com.targettrust.spring.aula.repository;
+package br.com.targettrust.spring.aula.repository.pagamento;
 
-import br.com.targettrust.spring.aula.model.CartaoCredito;
+import br.com.targettrust.spring.aula.model.pagamento.CartaoCredito;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

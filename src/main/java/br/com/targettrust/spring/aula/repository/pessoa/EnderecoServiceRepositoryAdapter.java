@@ -1,8 +1,8 @@
-package br.com.targettrust.spring.aula.repository;
+package br.com.targettrust.spring.aula.repository.pessoa;
 
-import br.com.targettrust.spring.aula.model.Endereco;
 import br.com.targettrust.spring.aula.model.error.NotFoundException;
-import br.com.targettrust.spring.aula.service.EnderecoServiceRepository;
+import br.com.targettrust.spring.aula.model.pessoa.Endereco;
+import br.com.targettrust.spring.aula.service.pessoa.EnderecoServiceRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 

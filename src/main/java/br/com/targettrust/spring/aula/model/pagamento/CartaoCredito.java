@@ -1,5 +1,6 @@
-package br.com.targettrust.spring.aula.model;
+package br.com.targettrust.spring.aula.model.pagamento;
 
+import br.com.targettrust.spring.aula.model.pessoa.Endereco;
 import jakarta.persistence.*;
 import lombok.*;
 

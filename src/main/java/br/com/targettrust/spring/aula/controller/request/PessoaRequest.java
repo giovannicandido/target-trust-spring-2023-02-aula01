@@ -1,7 +1,7 @@
 package br.com.targettrust.spring.aula.controller.request;
 
 
-import br.com.targettrust.spring.aula.model.Pessoa;
+import br.com.targettrust.spring.aula.model.pessoa.Pessoa;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;

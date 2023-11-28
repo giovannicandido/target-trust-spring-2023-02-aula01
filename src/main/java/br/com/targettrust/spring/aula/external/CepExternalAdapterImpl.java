@@ -1,7 +1,7 @@
 package br.com.targettrust.spring.aula.external;
 
-import br.com.targettrust.spring.aula.model.Endereco;
-import br.com.targettrust.spring.aula.service.CepExternalService;
+import br.com.targettrust.spring.aula.model.pessoa.Endereco;
+import br.com.targettrust.spring.aula.service.external.CepExternalService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
