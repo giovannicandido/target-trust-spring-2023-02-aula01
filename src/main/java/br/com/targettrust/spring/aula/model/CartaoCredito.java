@@ -1,7 +1,6 @@
 package br.com.targettrust.spring.aula.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 /**
@@ -17,6 +16,9 @@ import lombok.*;
 public class CartaoCredito {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
+
+    @Column(nullable = false, unique = true)
     private String numero;
 }

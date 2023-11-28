@@ -9,6 +9,6 @@ import org.springframework.stereotype.Service;
 public class EmailExternalServiceImpl implements EmailExternalService {
     @Override
     public void enviarEmail(String destinatario, String mensagem, String assunto) {
-        log.info("Enviando email para " + destinatario);
+        log.info("Enviando email para " + destinatario + " com assunto " + assunto);
     }
 }
