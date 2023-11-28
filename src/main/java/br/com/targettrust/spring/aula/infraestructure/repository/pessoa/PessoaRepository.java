@@ -1,4 +1,4 @@
-package br.com.targettrust.spring.aula.repository.pessoa;
+package br.com.targettrust.spring.aula.infraestructure.repository.pessoa;
 
 import br.com.targettrust.spring.aula.model.pessoa.Pessoa;
 import org.springframework.data.jpa.repository.JpaRepository;

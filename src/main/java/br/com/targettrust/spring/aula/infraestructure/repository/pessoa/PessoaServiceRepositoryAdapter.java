@@ -1,4 +1,4 @@
-package br.com.targettrust.spring.aula.repository.pessoa;
+package br.com.targettrust.spring.aula.infraestructure.repository.pessoa;
 
 import br.com.targettrust.spring.aula.model.error.NotFoundException;
 import br.com.targettrust.spring.aula.model.pessoa.Pessoa;

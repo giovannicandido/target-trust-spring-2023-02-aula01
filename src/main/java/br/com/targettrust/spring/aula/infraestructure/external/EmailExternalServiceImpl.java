@@ -1,4 +1,4 @@
-package br.com.targettrust.spring.aula.external;
+package br.com.targettrust.spring.aula.infraestructure.external;
 
 import br.com.targettrust.spring.aula.service.external.EmailExternalService;
 import lombok.extern.slf4j.Slf4j;

@@ -1,4 +1,4 @@
-package br.com.targettrust.spring.aula.external;
+package br.com.targettrust.spring.aula.infraestructure.external;
 
 import br.com.targettrust.spring.aula.model.pessoa.Endereco;
 import br.com.targettrust.spring.aula.service.external.CepExternalService;
