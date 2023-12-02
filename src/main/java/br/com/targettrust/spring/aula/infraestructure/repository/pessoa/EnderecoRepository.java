@@ -2,6 +2,7 @@ package br.com.targettrust.spring.aula.infraestructure.repository.pessoa;
 
 import br.com.targettrust.spring.aula.model.pessoa.Endereco;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -40,6 +41,16 @@ public interface EnderecoRepository extends JpaRepository<Endereco, Long> { // t
 
     @Query("select e.logradouro as logradouro, e.numero as numero from Endereco e where e.logradouro ilike :logradouro")
     List<EnderecoProjection> findAllByLogradouroIsLikeWithProjection(String logradouro);
+
+
+    @Modifying
+        // sinaliza que é um update ou delete
+    void deleteAllByBairro(String bairro);
+
+    @Query("delete from Endereco e  where e.bairro = :bairro")
+    @Modifying
+        // se a query modifica tem que ter essa anotação
+    void deletePersonalizado(String bairro);
 
 
 
