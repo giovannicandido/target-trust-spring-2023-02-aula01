@@ -21,7 +21,7 @@ public interface EnderecoRepository extends JpaRepository<Endereco, Long> { // t
     @Query(value = "select e from Endereco e where e.logradouro ilike :rua")
     List<Endereco> findEnderecoByLogradouroJPA(@Param("rua") String logradouro);
 
-    @Query(value = "select e from Endereco e join e.pessoa p where p.nome ilike :nomePessoa")
+    @Query(value = "select e from Cliente c join c.enderecos e where c.nome ilike :nomePessoa")
     List<Endereco> findEnderecoByPessoaNome(String nomePessoa);
 
     /**

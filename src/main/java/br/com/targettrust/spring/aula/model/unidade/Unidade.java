@@ -33,7 +33,7 @@ public class Unidade {
     private String nome;
 
     @ManyToOne
-    @JoinColumn(name = "endereco_id", foreignKey = @ForeignKey(name = "fk_unidade_endereco"))
+    @JoinColumn(name = "endereco_id", nullable = false, foreignKey = @ForeignKey(name = "fk_unidade_endereco"))
     private Endereco endereco;
 
 

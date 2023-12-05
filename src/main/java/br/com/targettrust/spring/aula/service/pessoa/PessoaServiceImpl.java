@@ -146,10 +146,16 @@ public class PessoaServiceImpl implements PessoaService {
                 .orElseThrow(() -> new EnderecoNaoLocalizadoException(pagamentoRequest.getCep()));
 
         endereco.setNumero(pagamentoRequest.getNumero());
-        endereco.setPessoa(pessoa);
+        List<Endereco> enderecos = pessoa.getEnderecos();
+
+        if (enderecos != null) {
+            enderecos.add(endereco);
+        }
 
         // salvar o endereco no banco
         enderecoServiceRepository.save(endereco);
+        //
+        pessoaRepository.save(pessoa);
 
         // salvar o cartao de credito da pessoa no banco
         cartaoService.salvarEvalidarCartao(pagamentoRequest.getNumeroCartao(), pessoa);

@@ -11,9 +11,8 @@ public interface EnderecoService extends CommonCrudService<Endereco, Long> {
      * Precisamos do id da pessoa para salvar o endereço que tem que apontar para pessoa obrigatoriamente. Nossa modelagem não existe Endereço sem pessoa
      *
      * @param endereco
-     * @param pessoaId
      */
-    void save(Endereco endereco, Integer pessoaId);
+    void save(Endereco endereco);
 
     List<Endereco> searchByRua(String rua);
 

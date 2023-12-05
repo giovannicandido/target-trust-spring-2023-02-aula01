@@ -2,6 +2,7 @@ package br.com.targettrust.spring.aula.model.cliente;
 
 import br.com.targettrust.spring.aula.model.animal.Animal;
 import br.com.targettrust.spring.aula.model.pagamento.CartaoCredito;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -49,7 +50,7 @@ public class Cliente {
     @Column(nullable = false)
     private LocalDate dataNascimento;
 
-    @OneToMany(mappedBy = "pessoa", fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<Endereco> enderecos;
 
     @OneToOne

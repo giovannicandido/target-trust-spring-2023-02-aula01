@@ -34,9 +34,6 @@ public class EnderecoRequest {
 
     private String cep;
 
-    @NotNull
-    private Integer pessoaId;
-
     /**
      * Não vamos passar para dentro da aplicação (camadas internas) coisas da API (request e response)
      * Aqui transformamos os dados para passar para outras camadas.

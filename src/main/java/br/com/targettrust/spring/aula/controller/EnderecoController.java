@@ -64,7 +64,7 @@ public class EnderecoController {
     @PostMapping
     public void saveEnderecos(@RequestBody @Valid EnderecoRequest endereco) {
 
-        enderecoService.save(endereco.toModel(), endereco.getPessoaId());
+        enderecoService.save(endereco.toModel());
     }
 
 }
