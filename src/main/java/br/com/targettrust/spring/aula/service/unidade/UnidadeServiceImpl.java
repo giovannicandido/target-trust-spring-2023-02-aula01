@@ -4,6 +4,8 @@ import br.com.targettrust.spring.aula.infraestructure.repository.pessoa.Endereco
 import br.com.targettrust.spring.aula.infraestructure.repository.unidade.UnidadeRepository;
 import br.com.targettrust.spring.aula.model.unidade.Unidade;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,5 +21,10 @@ public class UnidadeServiceImpl implements UnidadeService {
     public Unidade create(Unidade unidade) {
         enderecoRepository.save(unidade.getEndereco());
         return repository.save(unidade);
+    }
+
+    @Override
+    public Page<Unidade> findAll(Pageable pageable) {
+        return repository.findAll(pageable);
     }
 }
