@@ -12,10 +12,13 @@ public class UnidadeResponse {
 
     private String nome;
 
+    private EnderecoResponse endereco;
+
     public static UnidadeResponse of(Unidade unidade) {
         return UnidadeResponse.builder()
             .id(unidade.getId())
             .nome(unidade.getNome())
+            .endereco(EnderecoResponse.of(unidade.getEndereco()))
             .build();
     }
 }
