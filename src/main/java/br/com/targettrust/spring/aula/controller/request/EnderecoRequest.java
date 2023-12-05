@@ -1,7 +1,7 @@
 package br.com.targettrust.spring.aula.controller.request;
 
-import br.com.targettrust.spring.aula.model.pessoa.Endereco;
-import br.com.targettrust.spring.aula.model.pessoa.Estado;
+import br.com.targettrust.spring.aula.model.cliente.Endereco;
+import br.com.targettrust.spring.aula.model.cliente.Estado;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;

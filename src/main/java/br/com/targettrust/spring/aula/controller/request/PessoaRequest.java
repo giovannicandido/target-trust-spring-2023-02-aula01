@@ -1,7 +1,7 @@
 package br.com.targettrust.spring.aula.controller.request;
 
 
-import br.com.targettrust.spring.aula.model.pessoa.Pessoa;
+import br.com.targettrust.spring.aula.model.cliente.Cliente;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
@@ -25,8 +25,8 @@ public class PessoaRequest {
      *
      * @return
      */
-    public Pessoa toModel() {
-        return Pessoa.builder()
+    public Cliente toModel() {
+        return Cliente.builder()
                 .nome(nome)
                 .dataNascimento(dataNascimento)
                 .build();

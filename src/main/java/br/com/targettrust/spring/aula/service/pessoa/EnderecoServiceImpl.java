@@ -2,9 +2,9 @@ package br.com.targettrust.spring.aula.service.pessoa;
 
 import br.com.targettrust.spring.aula.infraestructure.repository.pessoa.EnderecoRepository;
 import br.com.targettrust.spring.aula.infraestructure.repository.pessoa.PessoaRepository;
+import br.com.targettrust.spring.aula.model.cliente.Cliente;
+import br.com.targettrust.spring.aula.model.cliente.Endereco;
 import br.com.targettrust.spring.aula.model.error.NotFoundException;
-import br.com.targettrust.spring.aula.model.pessoa.Endereco;
-import br.com.targettrust.spring.aula.model.pessoa.Pessoa;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -47,7 +47,7 @@ public class EnderecoServiceImpl implements EnderecoService {
     @Override
     public void save(Endereco endereco, Integer pessoaId) {
         // A pessoa não deve ser criada (new Pessoa()) nem editada, mas precisamos da pessoa existente para fazer a relação
-        Pessoa pessoaById = pessoaServiceRepository.findById(pessoaId)
+        Cliente pessoaById = pessoaServiceRepository.findById(pessoaId)
             .orElseThrow(() -> new NotFoundException("Pessoa", pessoaId.toString()));
 
         endereco.setPessoa(pessoaById); // O JPA entende que existe a relação e quando salvarmos endereço ele vai fazer o insert correto passando o id de pessoa na JoinColum de pessoa_id

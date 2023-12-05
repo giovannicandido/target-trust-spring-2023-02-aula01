@@ -1,6 +1,6 @@
-package br.com.targettrust.spring.aula.model.pagamento;
+package br.com.targettrust.spring.aula.model.unidade;
 
-import br.com.targettrust.spring.aula.model.cliente.Cliente;
+import br.com.targettrust.spring.aula.model.cliente.Endereco;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ForeignKey;
@@ -16,25 +16,25 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.time.LocalDateTime;
-
 @Entity
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
-@ToString(exclude = "pagador")
-public class Pagamento {
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString(exclude = "endereco")
+public class Unidade {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
+    private Integer id;
+
+    @Column(nullable = false, length = 50, unique = true)
+    private String nome;
 
     @ManyToOne
-    @JoinColumn(name = "pagador_id", foreignKey = @ForeignKey(name = "fk_pagamento_pessoa"))
-    private Cliente pagador;
+    @JoinColumn(name = "endereco_id", foreignKey = @ForeignKey(name = "fk_unidade_endereco"))
+    private Endereco endereco;
 
-    @Column(nullable = false)
-    private LocalDateTime dataPagamento;
+
 }

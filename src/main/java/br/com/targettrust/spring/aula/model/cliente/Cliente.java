@@ -1,5 +1,6 @@
-package br.com.targettrust.spring.aula.model.pessoa;
+package br.com.targettrust.spring.aula.model.cliente;
 
+import br.com.targettrust.spring.aula.model.animal.Animal;
 import br.com.targettrust.spring.aula.model.pagamento.CartaoCredito;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -33,7 +34,7 @@ import java.util.List;
 @Getter
 @Setter
 @ToString(exclude = {"enderecos", "cartaoCredito"})
-public class Pessoa {
+public class Cliente {
 
     @Id
     @GeneratedValue(generator = "pessoa_seq", strategy = GenerationType.SEQUENCE)
@@ -41,6 +42,9 @@ public class Pessoa {
 
     @Column(length = 100)
     private String nome;
+
+    @Column(length = 14, nullable = false, unique = true)
+    private String cpf;
 
     @Column(nullable = false)
     private LocalDate dataNascimento;
@@ -51,4 +55,8 @@ public class Pessoa {
     @OneToOne
     @JoinColumn(name = "cartao_credito_id", foreignKey = @ForeignKey(name = "fk_pessoa_cartao_credito"))
     private CartaoCredito cartaoCredito;
+
+    @OneToMany
+    @JoinColumn(name = "cliente_id", nullable = false, foreignKey = @ForeignKey(name = "fk_cliente_animal"))
+    private List<Animal> animais;
 }

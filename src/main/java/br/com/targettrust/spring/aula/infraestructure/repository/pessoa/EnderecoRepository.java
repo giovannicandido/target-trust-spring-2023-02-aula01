@@ -1,6 +1,6 @@
 package br.com.targettrust.spring.aula.infraestructure.repository.pessoa;
 
-import br.com.targettrust.spring.aula.model.pessoa.Endereco;
+import br.com.targettrust.spring.aula.model.cliente.Endereco;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

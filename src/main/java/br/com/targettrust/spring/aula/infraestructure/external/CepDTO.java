@@ -1,7 +1,7 @@
 package br.com.targettrust.spring.aula.infraestructure.external;
 
-import br.com.targettrust.spring.aula.model.pessoa.Endereco;
-import br.com.targettrust.spring.aula.model.pessoa.Estado;
+import br.com.targettrust.spring.aula.model.cliente.Endereco;
+import br.com.targettrust.spring.aula.model.cliente.Estado;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

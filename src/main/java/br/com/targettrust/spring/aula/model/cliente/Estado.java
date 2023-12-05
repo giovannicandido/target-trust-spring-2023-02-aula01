@@ -1,4 +1,4 @@
-package br.com.targettrust.spring.aula.model.pessoa;
+package br.com.targettrust.spring.aula.model.cliente;
 
 public enum Estado {
     AC,  // Acre

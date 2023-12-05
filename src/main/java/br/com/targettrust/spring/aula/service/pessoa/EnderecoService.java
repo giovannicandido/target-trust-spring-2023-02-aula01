@@ -1,6 +1,6 @@
 package br.com.targettrust.spring.aula.service.pessoa;
 
-import br.com.targettrust.spring.aula.model.pessoa.Endereco;
+import br.com.targettrust.spring.aula.model.cliente.Endereco;
 import br.com.targettrust.spring.aula.service.CommonCrudService;
 
 import java.util.List;

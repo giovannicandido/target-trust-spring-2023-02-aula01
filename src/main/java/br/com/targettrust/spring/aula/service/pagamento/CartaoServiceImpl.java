@@ -1,9 +1,9 @@
 package br.com.targettrust.spring.aula.service.pagamento;
 
 import br.com.targettrust.spring.aula.infraestructure.repository.pagamento.CartaoRepository;
+import br.com.targettrust.spring.aula.model.cliente.Cliente;
 import br.com.targettrust.spring.aula.model.error.OutraPessoaPossuiEsseCartaoException;
 import br.com.targettrust.spring.aula.model.pagamento.CartaoCredito;
-import br.com.targettrust.spring.aula.model.pessoa.Pessoa;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -20,7 +20,7 @@ public class CartaoServiceImpl implements CartaoService {
 
     @Transactional(propagation = Propagation.REQUIRED)
     @Override
-    public void salvarEvalidarCartao(String numeroCartao, Pessoa pessoa) {
+    public void salvarEvalidarCartao(String numeroCartao, Cliente pessoa) {
         log.info("Salvando cartao " + numeroCartao);
 
         boolean existeOutroDono = cartaoServiceRepository.existsByNumeroAndPessoaIdNotIn(numeroCartao, pessoa.getId());

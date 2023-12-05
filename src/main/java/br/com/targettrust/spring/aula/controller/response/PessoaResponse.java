@@ -1,7 +1,7 @@
 package br.com.targettrust.spring.aula.controller.response;
 
 
-import br.com.targettrust.spring.aula.model.pessoa.Pessoa;
+import br.com.targettrust.spring.aula.model.cliente.Cliente;
 import lombok.Builder;
 import lombok.Data;
 
@@ -19,7 +19,7 @@ public class PessoaResponse {
 
     private LocalDate dataNascimento;
 
-    public static PessoaResponse of(Pessoa pessoa) {
+    public static PessoaResponse of(Cliente pessoa) {
         return PessoaResponse.builder()
                 .id(pessoa.getId())
                 .nome(pessoa.getNome())

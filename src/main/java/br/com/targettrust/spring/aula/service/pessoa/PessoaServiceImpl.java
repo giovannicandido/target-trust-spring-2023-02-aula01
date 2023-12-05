@@ -3,13 +3,13 @@ package br.com.targettrust.spring.aula.service.pessoa;
 import br.com.targettrust.spring.aula.infraestructure.repository.pagamento.PagamentoRepository;
 import br.com.targettrust.spring.aula.infraestructure.repository.pessoa.EnderecoRepository;
 import br.com.targettrust.spring.aula.infraestructure.repository.pessoa.PessoaRepository;
+import br.com.targettrust.spring.aula.model.cliente.Cliente;
+import br.com.targettrust.spring.aula.model.cliente.Endereco;
+import br.com.targettrust.spring.aula.model.cliente.PessoaSearchParams;
 import br.com.targettrust.spring.aula.model.error.EnderecoNaoLocalizadoException;
 import br.com.targettrust.spring.aula.model.error.NotFoundException;
 import br.com.targettrust.spring.aula.model.pagamento.IniciarPagamento;
 import br.com.targettrust.spring.aula.model.pagamento.Pagamento;
-import br.com.targettrust.spring.aula.model.pessoa.Endereco;
-import br.com.targettrust.spring.aula.model.pessoa.Pessoa;
-import br.com.targettrust.spring.aula.model.pessoa.PessoaSearchParams;
 import br.com.targettrust.spring.aula.service.external.CepExternalService;
 import br.com.targettrust.spring.aula.service.external.EmailExternalService;
 import br.com.targettrust.spring.aula.service.pagamento.CartaoService;
@@ -60,7 +60,7 @@ public class PessoaServiceImpl implements PessoaService {
     }
 
     @Override
-    public List<Pessoa> listAll() {
+    public List<Cliente> listAll() {
         return pessoaRepository.findAll();
     }
 
@@ -72,15 +72,15 @@ public class PessoaServiceImpl implements PessoaService {
 
     @Transactional
     @Override
-    public void save(Pessoa pessoa) {
+    public void save(Cliente pessoa) {
         pessoaRepository.save(pessoa);
     }
 
     @Transactional
     @Override
-    public void editPessoa(Pessoa pessoaNova, Integer id) {
+    public void editPessoa(Cliente pessoaNova, Integer id) {
 
-        Pessoa pessoaExistente = pessoaRepository.findById(id)
+        Cliente pessoaExistente = pessoaRepository.findById(id)
             .orElseThrow(() -> new NotFoundException("Pessoa", id.toString()));
 
         pessoaNova.setId(id);
@@ -89,7 +89,7 @@ public class PessoaServiceImpl implements PessoaService {
     }
 
     @Override
-    public List<Pessoa> filtrarPeloNome(String name) {
+    public List<Cliente> filtrarPeloNome(String name) {
         return pessoaRepository.findAll()
                 .stream()
                 .filter(pessoa -> pessoa.getNome().startsWith(name))
@@ -97,14 +97,14 @@ public class PessoaServiceImpl implements PessoaService {
     }
 
     @Override
-    public List<Pessoa> filtrar(PessoaSearchParams params) {
+    public List<Cliente> filtrar(PessoaSearchParams params) {
 
         // A logica de filtro abaixo seria melhor executada em um banco de dados
         // Podemos refatorar quando tivermos introduzido banco.
         // Reparar que o numero de combinações validas de filtro é gigantesca e cresce exponencialmente a medida que se adiciona mais filtros.
         // Existem formas de se montar a query no banco de dados de forma mais dinamica e resolver parcialmente o problem de combinações possíveis.
 
-        Stream<Pessoa> pessoaStream = pessoaRepository.findAll()
+        Stream<Cliente> pessoaStream = pessoaRepository.findAll()
                 .stream();
 
         if (params.getNome() != null && params.getIdade() != null) {
@@ -136,7 +136,7 @@ public class PessoaServiceImpl implements PessoaService {
     @Override
     public Integer realizarPagamento(Integer idPessoa, IniciarPagamento pagamentoRequest) {
 
-        Pessoa pessoa = pessoaRepository.findById(idPessoa)
+        Cliente pessoa = pessoaRepository.findById(idPessoa)
             .orElseThrow(() -> new NotFoundException("Pesssoa", idPessoa.toString()));
 
         // pesquisa endereco pelo cep
