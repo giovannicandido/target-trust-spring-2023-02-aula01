@@ -8,7 +8,7 @@ public interface CartaoRepository extends JpaRepository<CartaoCredito, Long> {
 
     CartaoCredito findFirstByNumero(String numero);
 
-    @Query("select count(c) > 0 from Cliente p join p.cartaoCredito c where c.numero = :numero and p.id != :pessoaId")
-    boolean existsByNumeroAndPessoaIdNotIn(String numero, Integer pessoaId);
+    @Query("select count(c) > 0 from Cliente p join p.cartaoCredito c where c.numero = :numero and p.id != :clienteId")
+    boolean existsByNumeroAndClienteIdNotIn(String numero, Integer clienteId);
 
 }

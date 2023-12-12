@@ -9,7 +9,7 @@ import java.util.List;
  * Esta classe representa os parâmetros para filtrar os resultados da pesquisa.
  */
 @Value
-public class PessoaSearchParams {
+public class ClienteSearchParams {
     private final Integer idade;
     private final String nome;
     private final List<Integer> ids;
@@ -21,7 +21,7 @@ public class PessoaSearchParams {
      * @param nome
      * @param ids
      */
-    public PessoaSearchParams(Integer idade, String nome, List<Integer> ids) {
+    public ClienteSearchParams(Integer idade, String nome, List<Integer> ids) {
         this.idade = idade;
         this.nome = nome;
         this.ids = ids == null ? Collections.emptyList() : ids;

@@ -1,6 +1,6 @@
 package br.com.targettrust.spring.aula.service.unidade;
 
-import br.com.targettrust.spring.aula.infraestructure.repository.pessoa.EnderecoRepository;
+import br.com.targettrust.spring.aula.infraestructure.repository.cliente.EnderecoRepository;
 import br.com.targettrust.spring.aula.infraestructure.repository.unidade.UnidadeRepository;
 import br.com.targettrust.spring.aula.model.unidade.Unidade;
 import lombok.RequiredArgsConstructor;

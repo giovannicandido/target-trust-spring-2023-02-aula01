@@ -26,7 +26,7 @@ import lombok.ToString;
 @AllArgsConstructor // o builder precisa desse
 @Getter // Não use @Data ou @Value com entidades
 @Setter
-@ToString(exclude = "pessoa")
+@ToString(exclude = "cliente")
 // Ao criar o ToString automatico com o lombok tenha cuidado com relações, exclua elas pois senão o JPA vai carregar dados do banco de dados quando imprimir a entidade
 public class Endereco {
     @Id // obrigatório, toda entidade precisa de um id

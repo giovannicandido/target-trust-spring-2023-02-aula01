@@ -1,5 +1,6 @@
 package br.com.targettrust.spring.aula.model.atendimento;
 
+import br.com.targettrust.spring.aula.model.animal.Pet;
 import br.com.targettrust.spring.aula.model.cliente.Cliente;
 import br.com.targettrust.spring.aula.model.produto.Produto;
 import br.com.targettrust.spring.aula.model.unidade.Unidade;
@@ -65,5 +66,9 @@ public class Atendimento {
         inverseJoinColumns = @JoinColumn(name = "produto_id", foreignKey = @ForeignKey(name = "fk_atendimento_produto_produto"))
     )
     private List<Produto> produtos;
+
+    @ManyToOne
+    @JoinColumn(name = "pet_id", nullable = false, foreignKey = @ForeignKey(name = "fk_atendimento_pet"))
+    private Pet pet;
 
 }

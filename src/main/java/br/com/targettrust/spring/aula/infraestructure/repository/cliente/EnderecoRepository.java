@@ -1,4 +1,4 @@
-package br.com.targettrust.spring.aula.infraestructure.repository.pessoa;
+package br.com.targettrust.spring.aula.infraestructure.repository.cliente;
 
 import br.com.targettrust.spring.aula.model.cliente.Endereco;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -21,8 +21,8 @@ public interface EnderecoRepository extends JpaRepository<Endereco, Long> { // t
     @Query(value = "select e from Endereco e where e.logradouro ilike :rua")
     List<Endereco> findEnderecoByLogradouroJPA(@Param("rua") String logradouro);
 
-    @Query(value = "select e from Cliente c join c.enderecos e where c.nome ilike :nomePessoa")
-    List<Endereco> findEnderecoByPessoaNome(String nomePessoa);
+    @Query(value = "select e from Cliente c join c.enderecos e where c.nome ilike :nomeCliente")
+    List<Endereco> findEnderecoByClienteNome(String nomeCliente);
 
     /**
      * Producura usando os methods magicos do spring data ( o metodo vira a query: https://docs.spring.io/spring-data/jpa/reference/jpa/query-methods.html )

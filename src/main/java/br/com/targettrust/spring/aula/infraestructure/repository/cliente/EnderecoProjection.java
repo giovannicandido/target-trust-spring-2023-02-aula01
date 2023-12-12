@@ -1,4 +1,4 @@
-package br.com.targettrust.spring.aula.infraestructure.repository.pessoa;
+package br.com.targettrust.spring.aula.infraestructure.repository.cliente;
 
 public interface EnderecoProjection {
 

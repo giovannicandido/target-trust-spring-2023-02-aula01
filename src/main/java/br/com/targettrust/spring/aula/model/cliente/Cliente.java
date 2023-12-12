@@ -1,6 +1,6 @@
 package br.com.targettrust.spring.aula.model.cliente;
 
-import br.com.targettrust.spring.aula.model.animal.Animal;
+import br.com.targettrust.spring.aula.model.animal.Pet;
 import br.com.targettrust.spring.aula.model.pagamento.CartaoCredito;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -28,7 +28,7 @@ import java.util.List;
  * Olhar os comentários de {@link Endereco}
  */
 @Entity
-@SequenceGenerator(name = "pessoa_seq", initialValue = 1, allocationSize = 1)
+@SequenceGenerator(name = "cliente_seq", initialValue = 1, allocationSize = 1)
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -38,7 +38,7 @@ import java.util.List;
 public class Cliente {
 
     @Id
-    @GeneratedValue(generator = "pessoa_seq", strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(generator = "cliente_seq", strategy = GenerationType.SEQUENCE)
     private Integer id;
 
     @Column(length = 100)
@@ -51,13 +51,13 @@ public class Cliente {
     private LocalDate dataNascimento;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "client_id", foreignKey = @ForeignKey(name = "fk_endereco_cliente"))
     private List<Endereco> enderecos;
 
-    @OneToOne
-    @JoinColumn(name = "cartao_credito_id", foreignKey = @ForeignKey(name = "fk_pessoa_cartao_credito"))
+    @OneToOne(cascade = {CascadeType.PERSIST})
+    @JoinColumn(name = "cartao_credito_id", foreignKey = @ForeignKey(name = "fk_cliente_cartao_credito"))
     private CartaoCredito cartaoCredito;
 
-    @OneToMany
-    @JoinColumn(name = "cliente_id", nullable = false, foreignKey = @ForeignKey(name = "fk_cliente_animal"))
-    private List<Animal> animais;
+    @OneToMany(mappedBy = "dono")
+    private List<Pet> pets;
 }
