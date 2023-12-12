@@ -1,6 +1,6 @@
 package br.com.targettrust.spring.aula.model.produto;
 
-import br.com.targettrust.spring.aula.model.animal.Animal;
+import br.com.targettrust.spring.aula.model.animal.TipoAnimal;
 import br.com.targettrust.spring.aula.model.atendimento.Atendimento;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -45,7 +45,7 @@ public class Produto {
 
     @ManyToOne
     @JoinColumn(name = "animal_id", nullable = false, foreignKey = @ForeignKey(name = "fk_produto_animal"))
-    private Animal animal;
+    private TipoAnimal animal;
 
     @ManyToMany(mappedBy = "produtos")
     private List<Atendimento> atendimentos;

@@ -1,6 +1,7 @@
-package br.com.targettrust.spring.aula.model.pagamento;
+package br.com.targettrust.spring.aula.model.animal;
 
 import br.com.targettrust.spring.aula.model.cliente.Cliente;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ForeignKey;
@@ -16,7 +17,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Entity
 @Builder
@@ -24,17 +25,24 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString(exclude = "pagador")
-public class Pagamento {
-
+@ToString()
+public class Pet {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
+    private Integer id;
 
-    @ManyToOne
-    @JoinColumn(name = "pagador_id", foreignKey = @ForeignKey(name = "fk_pagamento_cliente"))
-    private Cliente pagador;
+    @Column(length = 60, nullable = false)
+    private String nome;
 
     @Column(nullable = false)
-    private LocalDateTime dataPagamento;
+    private LocalDate dataNascimento;
+
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+    @JoinColumn(name = "tipo_animal_id", nullable = false, foreignKey = @ForeignKey(name = "fk_pet_tipo_animal"))
+    private TipoAnimal tipoAnimal;
+
+    @ManyToOne
+    @JoinColumn(name = "cliente_id", nullable = false, foreignKey = @ForeignKey(name = "fk_cliente_pet"))
+    private Cliente dono;
+
 }

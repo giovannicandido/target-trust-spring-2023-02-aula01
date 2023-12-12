@@ -2,7 +2,7 @@ package br.com.targettrust.spring.aula.service.pagamento;
 
 import br.com.targettrust.spring.aula.infraestructure.repository.pagamento.CartaoRepository;
 import br.com.targettrust.spring.aula.model.cliente.Cliente;
-import br.com.targettrust.spring.aula.model.error.OutraPessoaPossuiEsseCartaoException;
+import br.com.targettrust.spring.aula.model.error.OutraClientePossuiEsseCartaoException;
 import br.com.targettrust.spring.aula.model.pagamento.CartaoCredito;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,13 +20,13 @@ public class CartaoServiceImpl implements CartaoService {
 
     @Transactional(propagation = Propagation.REQUIRED)
     @Override
-    public void salvarEvalidarCartao(String numeroCartao, Cliente pessoa) {
+    public void salvarEvalidarCartao(String numeroCartao, Cliente cliente) {
         log.info("Salvando cartao " + numeroCartao);
 
-        boolean existeOutroDono = cartaoServiceRepository.existsByNumeroAndPessoaIdNotIn(numeroCartao, pessoa.getId());
+        boolean existeOutroDono = cartaoServiceRepository.existsByNumeroAndClienteIdNotIn(numeroCartao, cliente.getId());
 
         if (existeOutroDono) {
-            throw new OutraPessoaPossuiEsseCartaoException();
+            throw new OutraClientePossuiEsseCartaoException();
         }
 
         CartaoCredito cartaoCredito = cartaoServiceRepository.findFirstByNumero(numeroCartao);
@@ -37,7 +37,7 @@ public class CartaoServiceImpl implements CartaoService {
 
         cartaoCredito.setNumero(numeroCartao);
 
-        pessoa.setCartaoCredito(cartaoCredito);
+        cliente.setCartaoCredito(cartaoCredito);
 
         cartaoServiceRepository.save(cartaoCredito);
 

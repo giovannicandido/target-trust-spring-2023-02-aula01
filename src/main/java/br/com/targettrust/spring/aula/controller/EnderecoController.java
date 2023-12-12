@@ -4,7 +4,7 @@ package br.com.targettrust.spring.aula.controller;
 import br.com.targettrust.spring.aula.controller.request.EnderecoRequest;
 import br.com.targettrust.spring.aula.controller.response.EnderecoResponse;
 import br.com.targettrust.spring.aula.model.cliente.Endereco;
-import br.com.targettrust.spring.aula.service.pessoa.EnderecoService;
+import br.com.targettrust.spring.aula.service.cliente.EnderecoService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,14 +39,14 @@ public class EnderecoController {
 
     @GetMapping("/search")
     public List<EnderecoResponse> searchEnderecos(@RequestParam(required = false) String rua,
-                                                  @RequestParam(required = false) String nomePessoa) {
+                                                  @RequestParam(required = false) String nomeCliente) {
 
         List<Endereco> enderecos;
 
         if (!Objects.isNull(rua)) {
             enderecos = enderecoService.searchByRua(rua);
         } else {
-            enderecos = enderecoService.searchByNomePessoa(nomePessoa);
+            enderecos = enderecoService.searchByNomeCliente(nomeCliente);
         }
 
 
@@ -64,7 +64,7 @@ public class EnderecoController {
     @PostMapping
     public void saveEnderecos(@RequestBody @Valid EnderecoRequest endereco) {
 
-        enderecoService.save(endereco.toModel());
+        enderecoService.save(endereco.toModel(), endereco.getClienteId());
     }
 
 }

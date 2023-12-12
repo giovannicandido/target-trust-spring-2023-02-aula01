@@ -1,7 +1,8 @@
-package br.com.targettrust.spring.aula.service.pessoa;
+package br.com.targettrust.spring.aula.service.cliente;
 
-import br.com.targettrust.spring.aula.infraestructure.repository.pessoa.EnderecoRepository;
-import br.com.targettrust.spring.aula.infraestructure.repository.pessoa.PessoaRepository;
+import br.com.targettrust.spring.aula.infraestructure.repository.cliente.ClienteRepository;
+import br.com.targettrust.spring.aula.infraestructure.repository.cliente.EnderecoRepository;
+import br.com.targettrust.spring.aula.model.cliente.Cliente;
 import br.com.targettrust.spring.aula.model.cliente.Endereco;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,8 @@ import java.util.List;
 public class EnderecoServiceImpl implements EnderecoService {
 
     private final EnderecoRepository enderecoServiceRepository;
-    private final PessoaRepository pessoaServiceRepository;
+    private final ClienteRepository clienteServiceRepository;
+    private final ClienteService clienteService;
 
     @Override
     public List<Endereco> listAll() {
@@ -39,16 +41,19 @@ public class EnderecoServiceImpl implements EnderecoService {
      * No caso do spring criar ele pode criar no repository dele.
      * É sempre bom ser explicito
      * @param endereco
-     * @param pessoaId
      */
     @Transactional
     @Override
-    public void save(Endereco endereco) {
-//        // A pessoa não deve ser criada (new Pessoa()) nem editada, mas precisamos da pessoa existente para fazer a relação
-//        Cliente pessoaById = pessoaServiceRepository.findById(pessoaId)
-//            .orElseThrow(() -> new NotFoundException("Pessoa", pessoaId.toString()));
+    public void save(Endereco endereco, Integer idCliente) {
+//        // A cliente não deve ser criada (new Cliente()) nem editada, mas precisamos da cliente existente para fazer a relação
+        Cliente clienteById = clienteService.getById(idCliente);
 
-        enderecoServiceRepository.save(endereco);
+        endereco = enderecoServiceRepository.save(endereco);
+
+        clienteById.getEnderecos().add(endereco);
+
+        clienteServiceRepository.save(clienteById);
+
     }
 
     @Override
@@ -57,7 +62,7 @@ public class EnderecoServiceImpl implements EnderecoService {
     }
 
     @Override
-    public List<Endereco> searchByNomePessoa(String nomePessoa) {
-        return enderecoServiceRepository.findEnderecoByPessoaNome(nomePessoa);
+    public List<Endereco> searchByNomeCliente(String nomeCliente) {
+        return enderecoServiceRepository.findEnderecoByClienteNome(nomeCliente);
     }
 }

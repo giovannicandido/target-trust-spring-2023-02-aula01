@@ -1,5 +1,6 @@
 package br.com.targettrust.spring.aula.model.animal;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,11 +16,12 @@ import lombok.ToString;
 @Setter
 @ToString
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Animal {
+public abstract class TipoAnimal {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Integer id;
+    protected Integer id;
 
-    private String nome;
+    @Column(nullable = false, unique = true)
+    protected String especie;
 }

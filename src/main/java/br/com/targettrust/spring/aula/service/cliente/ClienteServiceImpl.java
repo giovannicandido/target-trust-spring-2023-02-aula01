@@ -1,11 +1,11 @@
-package br.com.targettrust.spring.aula.service.pessoa;
+package br.com.targettrust.spring.aula.service.cliente;
 
+import br.com.targettrust.spring.aula.infraestructure.repository.cliente.ClienteRepository;
+import br.com.targettrust.spring.aula.infraestructure.repository.cliente.EnderecoRepository;
 import br.com.targettrust.spring.aula.infraestructure.repository.pagamento.PagamentoRepository;
-import br.com.targettrust.spring.aula.infraestructure.repository.pessoa.EnderecoRepository;
-import br.com.targettrust.spring.aula.infraestructure.repository.pessoa.PessoaRepository;
 import br.com.targettrust.spring.aula.model.cliente.Cliente;
+import br.com.targettrust.spring.aula.model.cliente.ClienteSearchParams;
 import br.com.targettrust.spring.aula.model.cliente.Endereco;
-import br.com.targettrust.spring.aula.model.cliente.PessoaSearchParams;
 import br.com.targettrust.spring.aula.model.error.EnderecoNaoLocalizadoException;
 import br.com.targettrust.spring.aula.model.error.NotFoundException;
 import br.com.targettrust.spring.aula.model.pagamento.IniciarPagamento;
@@ -27,15 +27,15 @@ import java.util.List;
 import java.util.stream.Stream;
 
 /**
- * Implementação do serviço de pessoas
+ * Implementação do serviço de clientes
  */
 @Service
 @RequiredArgsConstructor
 // Cria um bean do tipo Service, não há diferença entre outros beans (com exceção de Controladores e Configurações)
-public class PessoaServiceImpl implements PessoaService {
-    private final Logger logger = LoggerFactory.getLogger(PessoaServiceImpl.class);
+public class ClienteServiceImpl implements ClienteService {
+    private final Logger logger = LoggerFactory.getLogger(ClienteServiceImpl.class);
 
-    private final PessoaRepository pessoaRepository;
+    private final ClienteRepository clienteRepository;
 
     private final CepExternalService cepExternalService;
 
@@ -48,20 +48,20 @@ public class PessoaServiceImpl implements PessoaService {
     private final EmailExternalService emailExternalService;
 
 
-    @PreDestroy // So executa antes de remover o bean PessoaServiceImpl da memória ram
+    @PreDestroy // So executa antes de remover o bean ClienteServiceImpl da memória ram
     public void destroy() {
-        logger.info("PreDestroy PessoaService");
+        logger.info("PreDestroy ClienteService");
     }
 
     @Transactional
     @Override
     public void deleteById(Integer id) {
-        pessoaRepository.deleteById(id);
+        clienteRepository.deleteById(id);
     }
 
     @Override
     public List<Cliente> listAll() {
-        return pessoaRepository.findAll();
+        return clienteRepository.findAll();
     }
 
     @Override
@@ -72,72 +72,72 @@ public class PessoaServiceImpl implements PessoaService {
 
     @Transactional
     @Override
-    public void save(Cliente pessoa) {
-        pessoaRepository.save(pessoa);
+    public void save(Cliente cliente) {
+        clienteRepository.save(cliente);
     }
 
     @Transactional
     @Override
-    public void editPessoa(Cliente pessoaNova, Integer id) {
+    public void editCliente(Cliente clienteNova, Integer id) {
 
-        Cliente pessoaExistente = pessoaRepository.findById(id)
-            .orElseThrow(() -> new NotFoundException("Pessoa", id.toString()));
+        Cliente clienteExistente = clienteRepository.findById(id)
+            .orElseThrow(() -> new NotFoundException("Cliente", id.toString()));
 
-        pessoaNova.setId(id);
+        clienteNova.setId(id);
 
-        pessoaRepository.save(pessoaNova);
+        clienteRepository.save(clienteNova);
     }
 
     @Override
     public List<Cliente> filtrarPeloNome(String name) {
-        return pessoaRepository.findAll()
+        return clienteRepository.findAll()
                 .stream()
-                .filter(pessoa -> pessoa.getNome().startsWith(name))
+            .filter(cliente -> cliente.getNome().startsWith(name))
                 .toList();
     }
 
     @Override
-    public List<Cliente> filtrar(PessoaSearchParams params) {
+    public List<Cliente> filtrar(ClienteSearchParams params) {
 
         // A logica de filtro abaixo seria melhor executada em um banco de dados
         // Podemos refatorar quando tivermos introduzido banco.
         // Reparar que o numero de combinações validas de filtro é gigantesca e cresce exponencialmente a medida que se adiciona mais filtros.
         // Existem formas de se montar a query no banco de dados de forma mais dinamica e resolver parcialmente o problem de combinações possíveis.
 
-        Stream<Cliente> pessoaStream = pessoaRepository.findAll()
+        Stream<Cliente> clienteStream = clienteRepository.findAll()
                 .stream();
 
         if (params.getNome() != null && params.getIdade() != null) {
-            pessoaStream = pessoaStream.filter(pessoa -> {
-                return pessoa.getNome().startsWith(params.getNome()) || idadeMenorQue(params.getIdade(), pessoa.getDataNascimento());
+            clienteStream = clienteStream.filter(cliente -> {
+                return cliente.getNome().startsWith(params.getNome()) || idadeMenorQue(params.getIdade(), cliente.getDataNascimento());
             });
             if (!params.getIds().isEmpty()) {
-                pessoaStream = pessoaStream.filter(pessoa -> params.getIds().contains(pessoa.getId()));
+                clienteStream = clienteStream.filter(cliente -> params.getIds().contains(cliente.getId()));
             }
         } else {
             if (params.getNome() != null) {
-                pessoaStream = pessoaStream.filter(pessoa -> pessoa.getNome().startsWith(params.getNome()));
+                clienteStream = clienteStream.filter(cliente -> cliente.getNome().startsWith(params.getNome()));
             }
 
             if (!params.getIds().isEmpty()) {
-                pessoaStream = pessoaStream.filter(pessoa -> params.getIds().contains(pessoa.getId()));
+                clienteStream = clienteStream.filter(cliente -> params.getIds().contains(cliente.getId()));
             }
 
             if (params.getIdade() != null) {
-                pessoaStream = pessoaStream.filter(pessoa -> idadeMenorQue(params.getIdade(), pessoa.getDataNascimento()));
+                clienteStream = clienteStream.filter(cliente -> idadeMenorQue(params.getIdade(), cliente.getDataNascimento()));
             }
         }
 
-        return pessoaStream.toList();
+        return clienteStream.toList();
 
     }
 
     @Transactional
     @Override
-    public Integer realizarPagamento(Integer idPessoa, IniciarPagamento pagamentoRequest) {
+    public Integer realizarPagamento(Integer idCliente, IniciarPagamento pagamentoRequest) {
 
-        Cliente pessoa = pessoaRepository.findById(idPessoa)
-            .orElseThrow(() -> new NotFoundException("Pesssoa", idPessoa.toString()));
+        Cliente cliente = clienteRepository.findById(idCliente)
+            .orElseThrow(() -> new NotFoundException("Pesssoa", idCliente.toString()));
 
         // pesquisa endereco pelo cep
         // se enderco não localizado retorna not found
@@ -146,7 +146,7 @@ public class PessoaServiceImpl implements PessoaService {
                 .orElseThrow(() -> new EnderecoNaoLocalizadoException(pagamentoRequest.getCep()));
 
         endereco.setNumero(pagamentoRequest.getNumero());
-        List<Endereco> enderecos = pessoa.getEnderecos();
+        List<Endereco> enderecos = cliente.getEnderecos();
 
         if (enderecos != null) {
             enderecos.add(endereco);
@@ -155,16 +155,16 @@ public class PessoaServiceImpl implements PessoaService {
         // salvar o endereco no banco
         enderecoServiceRepository.save(endereco);
         //
-        pessoaRepository.save(pessoa);
+        clienteRepository.save(cliente);
 
-        // salvar o cartao de credito da pessoa no banco
-        cartaoService.salvarEvalidarCartao(pagamentoRequest.getNumeroCartao(), pessoa);
+        // salvar o cartao de credito da cliente no banco
+        cartaoService.salvarEvalidarCartao(pagamentoRequest.getNumeroCartao(), cliente);
 
         // simular o pagamento (salvar o pagamento)
 
         Pagamento pagamento = Pagamento.builder()
                 .dataPagamento(LocalDateTime.now())
-                .pagador(pessoa)
+            .pagador(cliente)
                 .build();
 
         pagamento = pagamentoRepository.save(pagamento);
@@ -176,6 +176,12 @@ public class PessoaServiceImpl implements PessoaService {
         // retornar o id do pagamento
 
         return Math.toIntExact(pagamento.getId());
+    }
+
+    @Override
+    public Cliente getById(Integer idCliente) {
+        return clienteRepository.findById(idCliente)
+            .orElseThrow(() -> new NotFoundException("Cliente", idCliente.toString()));
     }
 
     private boolean idadeMenorQue(Integer idade, LocalDate dataNascimento) {
