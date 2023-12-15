@@ -54,7 +54,7 @@ public class Cliente {
     @JoinColumn(name = "client_id", foreignKey = @ForeignKey(name = "fk_endereco_cliente"))
     private List<Endereco> enderecos;
 
-    @OneToOne(cascade = {CascadeType.PERSIST})
+    @OneToOne(cascade = {CascadeType.PERSIST}, fetch = FetchType.LAZY)
     @JoinColumn(name = "cartao_credito_id", foreignKey = @ForeignKey(name = "fk_cliente_cartao_credito"))
     private CartaoCredito cartaoCredito;
 

@@ -24,10 +24,10 @@ public class PetServiceImpl implements PetService {
 
     @Override
     @Transactional
-    public void createPet(Pet model, @NotNull Integer clienteId) {
+    public void createPet(Pet pet, @NotNull Integer clienteId) {
         Cliente cliente = clienteService.getById(clienteId);
-        model.setDono(cliente);
-        petRepository.save(model);
+        pet.setDono(cliente);
+        petRepository.save(pet);
 
     }
 }
