@@ -2,7 +2,7 @@ package br.com.targettrust.spring.aula.service.pagamento;
 
 import br.com.targettrust.spring.aula.infraestructure.repository.pagamento.CartaoRepository;
 import br.com.targettrust.spring.aula.model.cliente.Cliente;
-import br.com.targettrust.spring.aula.model.error.OutraClientePossuiEsseCartaoException;
+import br.com.targettrust.spring.aula.model.error.OutroClientePossuiEsseCartaoException;
 import br.com.targettrust.spring.aula.model.pagamento.CartaoCredito;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,7 +26,7 @@ public class CartaoServiceImpl implements CartaoService {
         boolean existeOutroDono = cartaoServiceRepository.existsByNumeroAndClienteIdNotIn(numeroCartao, cliente.getId());
 
         if (existeOutroDono) {
-            throw new OutraClientePossuiEsseCartaoException();
+            throw new OutroClientePossuiEsseCartaoException();
         }
 
         CartaoCredito cartaoCredito = cartaoServiceRepository.findFirstByNumero(numeroCartao);
