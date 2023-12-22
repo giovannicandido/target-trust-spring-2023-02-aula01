@@ -1,0 +1,446 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2023-11-21T01:24:28.571Z",
+  "__export_source": "insomnia.desktop.app:v8.4.2",
+  "resources": [
+    {
+      "_id": "req_aa44513aded246d9b4e90d4c9b68e1b2",
+      "parentId": "fld_9547267b735d43c798b789d4b3134479",
+      "modified": 1700183081452,
+      "created": 1700183055125,
+      "url": "http://localhost:8080/enderecos",
+      "name": "Listar Enderecos",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "User-Agent",
+          "value": "insomnia/8.4.2"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1700183055125,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "fld_9547267b735d43c798b789d4b3134479",
+      "parentId": "wrk_8312790dcebb48468d02e3c2582055f4",
+      "modified": 1700183051526,
+      "created": 1700183051526,
+      "name": "enderecos",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1700183051526,
+      "_type": "request_group"
+    },
+    {
+      "_id": "wrk_8312790dcebb48468d02e3c2582055f4",
+      "parentId": null,
+      "modified": 1699637973689,
+      "created": 1698712260365,
+      "name": "Target - 2023/2",
+      "description": "",
+      "scope": "collection",
+      "_type": "workspace"
+    },
+    {
+      "_id": "req_3929cf2c9f304a22aaf6572b3ab54639",
+      "parentId": "fld_9547267b735d43c798b789d4b3134479",
+      "modified": 1700523094374,
+      "created": 1700183091703,
+      "url": "http://localhost:8080/enderecos",
+      "name": "Criar Endereco",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"logradouro\": \"Rua attilio bilibio\",\n\t\"bairro\": \"Bairro\",\n\t\"cidade\": \"Cidade\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_179368d717aa49d3bd57e1fe7a9316d2"
+        },
+        {
+          "name": "User-Agent",
+          "value": "insomnia/8.4.2",
+          "id": "pair_802738cf7917468b93197d9f424939c9"
+        },
+        {
+          "id": "pair_9fb6554a68964ad4ae25dbdb06372690",
+          "name": "Accept-Language",
+          "value": "pt_BR",
+          "description": ""
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1700182205439,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_790c6667726b466389a0c10755f232a6",
+      "parentId": "wrk_8312790dcebb48468d02e3c2582055f4",
+      "modified": 1700181546082,
+      "created": 1700181355753,
+      "url": "http://localhost:8080/pessoas/1/enderecos/1",
+      "name": "Associar pessoa endereço",
+      "description": "",
+      "method": "POST",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "User-Agent",
+          "value": "insomnia/8.4.2"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1700181355753,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_c4fbd285fd474f3e838533050c6fb83f",
+      "parentId": "wrk_8312790dcebb48468d02e3c2582055f4",
+      "modified": 1700180702734,
+      "created": 1700180664714,
+      "url": "http://localhost:8080/pessoas/1",
+      "name": "Lista pessoa pelo id",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "User-Agent",
+          "value": "insomnia/8.4.2"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1700180664714,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_a8269bc33fe145ec8cdbcb0b9d48f02a",
+      "parentId": "wrk_8312790dcebb48468d02e3c2582055f4",
+      "modified": 1699316309122,
+      "created": 1699313715032,
+      "url": "http://localhost:8080/2/lists/1/followers",
+      "name": "List Followers",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "id": "pair_25f42237692c4b2c982d84306cde08fa",
+          "name": "name",
+          "value": "fe",
+          "description": "",
+          "disabled": true
+        },
+        {
+          "id": "pair_907c2f04672b4c63b1445534add000ae",
+          "name": "ids",
+          "value": "1,2",
+          "description": ""
+        }
+      ],
+      "headers": [
+        {
+          "name": "User-Agent",
+          "value": "insomnia/8.3.0"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1699313715032,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_4ab823ecf4d7437d858200ca2f523be3",
+      "parentId": "wrk_8312790dcebb48468d02e3c2582055f4",
+      "modified": 1699568773750,
+      "created": 1699314016369,
+      "url": "http://localhost:8080/2/lists/",
+      "name": "Create Followers",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"id\": \"1\",\n\t\"name\": \"Teste\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "User-Agent",
+          "value": "insomnia/8.3.0"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1699013156482.5,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_2b1a856eed8e414e9983912853ec74b9",
+      "parentId": "wrk_8312790dcebb48468d02e3c2582055f4",
+      "modified": 1699921751852,
+      "created": 1698712597933,
+      "url": "http://localhost:8080/pessoas/1",
+      "name": "Deletar Pessoa",
+      "description": "",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "User-Agent",
+          "value": "insomnia/8.3.0"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1698712597933,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_46e44c44b01a46f4a604199e61920591",
+      "parentId": "wrk_8312790dcebb48468d02e3c2582055f4",
+      "modified": 1700526374787,
+      "created": 1698712299343,
+      "url": "http://localhost:8080/pessoas",
+      "name": "Criar Pessoa",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"nome\": \"Marco antonio criado 2\",\n\t\"dataNascimento\": \"2000-01-03\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "User-Agent",
+          "value": "insomnia/8.3.0"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1698712299343,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_43f6142600d341c59fb668e801230195",
+      "parentId": "wrk_8312790dcebb48468d02e3c2582055f4",
+      "modified": 1700526426721,
+      "created": 1698713839833,
+      "url": "http://localhost:8080/pessoas/4",
+      "name": "Editar Pessoa",
+      "description": "",
+      "method": "PUT",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"nome\": \"Marco editado\",\n\t\"dataNascimento\": \"0000-01-03\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "User-Agent",
+          "value": "insomnia/8.3.0"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1698712281824.5,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_42a3dbd2a12c4818ad704765d079fe0e",
+      "parentId": "wrk_8312790dcebb48468d02e3c2582055f4",
+      "modified": 1700526290444,
+      "created": 1698712264306,
+      "url": "http://localhost:8080/pessoas",
+      "name": "Lista pessoas",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "User-Agent",
+          "value": "insomnia/8.3.0"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1698712264306,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_9b29b1a3ea1f4d5f8954bef56a18d5f8",
+      "parentId": "wrk_8312790dcebb48468d02e3c2582055f4",
+      "modified": 1699923684060,
+      "created": 1699571038413,
+      "url": "http://localhost:8080/pessoas/search",
+      "name": "Search Pessoas",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "id": "pair_97e64008cd934a2db9a103418056b4b0",
+          "name": "nomePessoa",
+          "value": "Ma",
+          "description": "",
+          "disabled": false
+        },
+        {
+          "id": "pair_c93d8790ceb542c58c81e3dc5d8869c2",
+          "name": "ids",
+          "value": "2,100",
+          "description": "",
+          "disabled": true
+        },
+        {
+          "id": "pair_48a207aef47545d089875d8ff709e4c3",
+          "name": "ids",
+          "value": "1",
+          "description": "",
+          "disabled": true
+        },
+        {
+          "id": "pair_ec8a6d1bd00148ed8d4f0f7086f63f97",
+          "name": "ids",
+          "value": "2",
+          "description": "",
+          "disabled": true
+        },
+        {
+          "id": "pair_255f71b47cd74f68a8a132c77a10fe47",
+          "name": "idade",
+          "value": "30",
+          "description": "",
+          "disabled": true
+        }
+      ],
+      "headers": [
+        {
+          "name": "User-Agent",
+          "value": "insomnia/8.3.0"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1698266321038.5,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "env_6a87205be83c143fb64652e8aad67656e05956a3",
+      "parentId": "wrk_8312790dcebb48468d02e3c2582055f4",
+      "modified": 1698712260370,
+      "created": 1698712260370,
+      "name": "Base Environment",
+      "data": {},
+      "dataPropertyOrder": null,
+      "color": null,
+      "isPrivate": false,
+      "metaSortKey": 1698712260370,
+      "_type": "environment"
+    },
+    {
+      "_id": "jar_6a87205be83c143fb64652e8aad67656e05956a3",
+      "parentId": "wrk_8312790dcebb48468d02e3c2582055f4",
+      "modified": 1698712260373,
+      "created": 1698712260373,
+      "name": "Default Jar",
+      "cookies": [],
+      "_type": "cookie_jar"
+    }
+  ]
+}

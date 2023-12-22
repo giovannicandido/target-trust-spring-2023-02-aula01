@@ -1,13 +1,34 @@
 package br.com.targettrust.spring.aula.model.error;
 
+
+import lombok.Value;
+
+/**
+ * Retorno de errors para exceções
+ *
+ * @see br.com.targettrust.spring.aula.controller.GlobalExceptionHandler
+ */
+@Value
 public class ApiError {
     private final String message;
+    private final String exceptionMessage;
+    private final StackTraceElement[] stackTraceElement;
 
-    public ApiError(String message) {
-        this.message = message;
+    /**
+     * Metodo de fabrica para criar ApiError somente com uma mensagem
+     *
+     * @param message Mensagem de erro
+     * @return Api Error
+     */
+    public static ApiError of(String message) {
+        return new ApiError(message, null, null);
     }
 
-    public String getMessage() {
-        return message;
+    public static ApiError of(String message, String exceptionMessage) {
+        return new ApiError(message, exceptionMessage, null);
+    }
+
+    public static ApiError of(String message, String exceptionMessage, StackTraceElement[] stackTraceElement) {
+        return new ApiError(message, exceptionMessage, stackTraceElement);
     }
 }

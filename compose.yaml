@@ -1,9 +1,18 @@
 services:
-  postgres:
+  db:
     image: postgres:15
     ports:
-      - 5432:5444
+      - 5432:5432
     environment:
       - POSTGRES_DB=aula
       - POSTGRES_PASSWORD=1234
       - POSTGRES_USER=aula
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+  rabbitmq:
+    image: rabbitmq:3
+    ports:
+      - 11111:1111
+
+volumes:
+  pgdata:
