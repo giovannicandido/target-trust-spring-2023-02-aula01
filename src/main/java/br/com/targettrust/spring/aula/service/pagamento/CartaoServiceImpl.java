@@ -1,5 +1,6 @@
 package br.com.targettrust.spring.aula.service.pagamento;
 
+import br.com.targettrust.spring.aula.infraestructure.repository.pagamento.CartaoRepository;
 import br.com.targettrust.spring.aula.model.error.OutraPessoaPossuiEsseCartaoException;
 import br.com.targettrust.spring.aula.model.pagamento.CartaoCredito;
 import br.com.targettrust.spring.aula.model.pessoa.Pessoa;
@@ -14,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class CartaoServiceImpl implements CartaoService {
 
-    private final CartaoServiceRepository cartaoServiceRepository;
+    private final CartaoRepository cartaoServiceRepository;
 
 
     @Transactional(propagation = Propagation.REQUIRED)
@@ -22,7 +23,7 @@ public class CartaoServiceImpl implements CartaoService {
     public void salvarEvalidarCartao(String numeroCartao, Pessoa pessoa) {
         log.info("Salvando cartao " + numeroCartao);
 
-        boolean existeOutroDono = cartaoServiceRepository.existOutraPessoaComCartaoIgual(pessoa.getId(), numeroCartao);
+        boolean existeOutroDono = cartaoServiceRepository.existsByNumeroAndPessoaIdNotIn(numeroCartao, pessoa.getId());
 
         if (existeOutroDono) {
             throw new OutraPessoaPossuiEsseCartaoException();
