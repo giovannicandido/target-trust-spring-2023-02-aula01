@@ -9,10 +9,6 @@ services:
       - POSTGRES_USER=aula
     volumes:
       - pgdata:/var/lib/postgresql/data
-  rabbitmq:
-    image: rabbitmq:3
-    ports:
-      - 11111:1111
 
 volumes:
   pgdata:

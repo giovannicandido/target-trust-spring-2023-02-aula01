@@ -3,11 +3,16 @@ package br.com.targettrust.spring.aula.controller;
 
 import br.com.targettrust.spring.aula.controller.request.EnderecoRequest;
 import br.com.targettrust.spring.aula.controller.response.EnderecoResponse;
-import br.com.targettrust.spring.aula.model.pessoa.Endereco;
-import br.com.targettrust.spring.aula.service.pessoa.EnderecoService;
+import br.com.targettrust.spring.aula.model.cliente.Endereco;
+import br.com.targettrust.spring.aula.service.cliente.EnderecoService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Objects;
@@ -34,14 +39,14 @@ public class EnderecoController {
 
     @GetMapping("/search")
     public List<EnderecoResponse> searchEnderecos(@RequestParam(required = false) String rua,
-                                                  @RequestParam(required = false) String nomePessoa) {
+                                                  @RequestParam(required = false) String nomeCliente) {
 
         List<Endereco> enderecos;
 
         if (!Objects.isNull(rua)) {
             enderecos = enderecoService.searchByRua(rua);
         } else {
-            enderecos = enderecoService.searchByNomePessoa(nomePessoa);
+            enderecos = enderecoService.searchByNomeCliente(nomeCliente);
         }
 
 
@@ -59,7 +64,7 @@ public class EnderecoController {
     @PostMapping
     public void saveEnderecos(@RequestBody @Valid EnderecoRequest endereco) {
 
-        enderecoService.save(endereco.toModel(), endereco.getPessoaId());
+        enderecoService.save(endereco.toModel(), endereco.getClienteId());
     }
 
 }

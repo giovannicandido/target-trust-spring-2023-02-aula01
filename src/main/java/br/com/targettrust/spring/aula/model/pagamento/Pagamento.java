@@ -1,8 +1,20 @@
 package br.com.targettrust.spring.aula.model.pagamento;
 
-import br.com.targettrust.spring.aula.model.pessoa.Pessoa;
-import jakarta.persistence.*;
-import lombok.*;
+import br.com.targettrust.spring.aula.model.cliente.Cliente;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.ForeignKey;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
 
@@ -20,8 +32,8 @@ public class Pagamento {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "pagador_id", foreignKey = @ForeignKey(name = "fk_pagamento_pessoa"))
-    private Pessoa pagador;
+    @JoinColumn(name = "pagador_id", foreignKey = @ForeignKey(name = "fk_pagamento_cliente"))
+    private Cliente pagador;
 
     @Column(nullable = false)
     private LocalDateTime dataPagamento;

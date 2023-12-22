@@ -1,0 +1,935 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2023-12-18T23:21:10.319Z",
+  "__export_source": "insomnia.desktop.app:v8.4.5",
+  "resources": [
+    {
+      "_id": "req_5d82d27198bd41d1b0b1855498a31463",
+      "parentId": "fld_25679fd69f514176a4e7c0377081f3cc",
+      "modified": 1702941306890,
+      "created": 1702940216095,
+      "url": "{{_.host}}/atendimentos/1/produtos",
+      "name": "Adicionar Produtos",
+      "description": "Adiciona produtos ao atendimento",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"produtos\": [\n\t\t1, 2, 3\n\t]\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "User-Agent",
+          "value": "insomnia/8.4.5"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1702940216095,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "fld_25679fd69f514176a4e7c0377081f3cc",
+      "parentId": "wrk_8312790dcebb48468d02e3c2582055f4",
+      "modified": 1702601409406,
+      "created": 1702601409406,
+      "name": "atendimento",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1702601409406,
+      "_type": "request_group"
+    },
+    {
+      "_id": "wrk_8312790dcebb48468d02e3c2582055f4",
+      "parentId": null,
+      "modified": 1699637973689,
+      "created": 1698712260365,
+      "name": "Target - 2023/2",
+      "description": "",
+      "scope": "collection",
+      "_type": "workspace"
+    },
+    {
+      "_id": "req_d3d8af0d1e2945a4b406b3b90ddd9458",
+      "parentId": "fld_25679fd69f514176a4e7c0377081f3cc",
+      "modified": 1702941296023,
+      "created": 1702940651211,
+      "url": "{{_.host}}/atendimentos/1/encerrar",
+      "name": "Encerrar",
+      "description": "Marcar o atendimento como \"Encerrado\" e não vai cobrar valores do cliente. Uma justificativa de ser dada pelo atendente.",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"justificativa\": \"Encerrado por pedido do cliente\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "User-Agent",
+          "value": "insomnia/8.4.5"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1702771092237.5,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_58e4acf2c18c4d189f062dcb0543490a",
+      "parentId": "fld_25679fd69f514176a4e7c0377081f3cc",
+      "modified": 1702941331619,
+      "created": 1702940806900,
+      "url": "{{_.host}}/atendimentos/1/finalizar",
+      "name": "Finalizar",
+      "description": "O atendimento será finalizado e pago no sistema com o valor que o antendente marcar. O sistema vai conferir se o valor bate com a soma dos valores dos produtos + o valor da consulta. O valor será creditado no cartão do cliente. O estado do produto vai para Finalizado",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"numeroCartao\": \"01010101-010101\",\n\t\"valorPago\": 20\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "User-Agent",
+          "value": "insomnia/8.4.5"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1702686530308.75,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_0582419a025d4acea7fd44057613e49f",
+      "parentId": "fld_25679fd69f514176a4e7c0377081f3cc",
+      "modified": 1702941160171,
+      "created": 1702601968380,
+      "url": "{{_.host}}/atendimentos/1/iniciar",
+      "name": "Iniciar Atendimento",
+      "description": "Inicia o atendimento adicionando-se um valor para consulta. O valor deve ser >= 0. Esse valor vai influenciar o encerramento e pagamento do atendimento. O atendimento vai ter o estado \"Em atendimento\"",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"veterinario\": \"João das neves\",\n\t\"valorConsulta\": 100\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "User-Agent",
+          "value": "insomnia/8.4.5"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1702601968380,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_a88c71f295b540e68ff3bb4de6795144",
+      "parentId": "fld_25679fd69f514176a4e7c0377081f3cc",
+      "modified": 1702941128835,
+      "created": 1702601415538,
+      "url": "{{_.host}}/atendimentos",
+      "name": "Criar Atendimento",
+      "description": "Criar um atendimento novo para o cliente e seu pet. O atendimento vai ter a data atual e o estado \"Em aberto\"",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"idCliente\": 4,\n\t\"idPet\": 3,\n\t\"nomeAtendente\": \"Ana\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "User-Agent",
+          "value": "insomnia/8.4.5"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1702601415538,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_f1c19480d9e84dd59dd2114f26f664ba",
+      "parentId": "fld_03f0f5391bf24691933a7cd7dd8261b2",
+      "modified": 1702600966255,
+      "created": 1702340518218,
+      "url": "{{_.host}}/pets",
+      "name": "Criar um pet",
+      "description": "Exemplos\n\n```json\n{\n\t\"nome\": \"bilu\",\n\t\"dataNascimento\": \"2020-01-01\",\n\t\"tipoAnimal\": {\n\t\t\"tipo\": \"MAMIFERO\",\n\t\t\"informacoes\": {\n\t\t\t\"raca\": \"Pitbul\",\n\t\t\t\"possuiPelos\": true\n\t\t}\n\t}\n}\n```",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"nome\": \"gato 3\",\n\t\"dataNascimento\": \"2010-01-01\",\n\t\"tipoAnimal\": {\n\t\t\"tipo\": \"MAMIFERO\",\n\t\t\"especie\": \"Marrom\",\n\t\t\"informacoes\": {\n\t\t\t\t\"possuiPelos\": true,\n\t\t\t\"raca\": \"Amarela\"\n\t\t}\n\t},\n\t\"clienteId\": 2\n}\n"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "User-Agent",
+          "value": "insomnia/8.4.5"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1702340518218,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "fld_03f0f5391bf24691933a7cd7dd8261b2",
+      "parentId": "wrk_8312790dcebb48468d02e3c2582055f4",
+      "modified": 1702340463474,
+      "created": 1702340463474,
+      "name": "pets",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1702340463474,
+      "_type": "request_group"
+    },
+    {
+      "_id": "req_3e6030ad19424ba594414f07e6b5e8bf",
+      "parentId": "fld_03f0f5391bf24691933a7cd7dd8261b2",
+      "modified": 1702600405725,
+      "created": 1702340466798,
+      "url": "{{_.host}}/clientes/2/pets",
+      "name": "Listar pets",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "User-Agent",
+          "value": "insomnia/8.4.5"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1702340466798,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_2b1a856eed8e414e9983912853ec74b9",
+      "parentId": "fld_d0b92515c1744b849ffa8f7807c77d9b",
+      "modified": 1702336996487,
+      "created": 1698712597933,
+      "url": "http://localhost:8080/pessoas/1",
+      "name": "Deletar Pessoa",
+      "description": "",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "User-Agent",
+          "value": "insomnia/8.3.0"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1702336984412,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "fld_d0b92515c1744b849ffa8f7807c77d9b",
+      "parentId": "wrk_8312790dcebb48468d02e3c2582055f4",
+      "modified": 1702336976126,
+      "created": 1702336976126,
+      "name": "cliente",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1702336976126,
+      "_type": "request_group"
+    },
+    {
+      "_id": "req_9b29b1a3ea1f4d5f8954bef56a18d5f8",
+      "parentId": "fld_d0b92515c1744b849ffa8f7807c77d9b",
+      "modified": 1702336993645,
+      "created": 1699571038413,
+      "url": "http://localhost:8080/pessoas/search",
+      "name": "Search Pessoas",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "id": "pair_97e64008cd934a2db9a103418056b4b0",
+          "name": "nomePessoa",
+          "value": "Ma",
+          "description": "",
+          "disabled": false
+        },
+        {
+          "id": "pair_c93d8790ceb542c58c81e3dc5d8869c2",
+          "name": "ids",
+          "value": "2,100",
+          "description": "",
+          "disabled": true
+        },
+        {
+          "id": "pair_48a207aef47545d089875d8ff709e4c3",
+          "name": "ids",
+          "value": "1",
+          "description": "",
+          "disabled": true
+        },
+        {
+          "id": "pair_ec8a6d1bd00148ed8d4f0f7086f63f97",
+          "name": "ids",
+          "value": "2",
+          "description": "",
+          "disabled": true
+        },
+        {
+          "id": "pair_255f71b47cd74f68a8a132c77a10fe47",
+          "name": "idade",
+          "value": "30",
+          "description": "",
+          "disabled": true
+        }
+      ],
+      "headers": [
+        {
+          "name": "User-Agent",
+          "value": "insomnia/8.3.0"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1702336984312,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_42a3dbd2a12c4818ad704765d079fe0e",
+      "parentId": "fld_d0b92515c1744b849ffa8f7807c77d9b",
+      "modified": 1702342697323,
+      "created": 1698712264306,
+      "url": "{{_.host}}/clientes",
+      "name": "Lista clientes",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "User-Agent",
+          "value": "insomnia/8.3.0"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1702336984212,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_8d28d0103d2c46df837719c2c53175c1",
+      "parentId": "fld_d0b92515c1744b849ffa8f7807c77d9b",
+      "modified": 1702337065587,
+      "created": 1702337032013,
+      "url": "http://localhost:8080/pessoas/4/enderecos",
+      "name": "Get cliente com enderecos",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "User-Agent",
+          "value": "insomnia/8.3.0"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1702336984162,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_43f6142600d341c59fb668e801230195",
+      "parentId": "fld_d0b92515c1744b849ffa8f7807c77d9b",
+      "modified": 1702336988803,
+      "created": 1698713839833,
+      "url": "http://localhost:8080/pessoas/4",
+      "name": "Editar Pessoa",
+      "description": "",
+      "method": "PUT",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"nome\": \"Marco editado\",\n\t\"dataNascimento\": \"0000-01-03\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "User-Agent",
+          "value": "insomnia/8.3.0"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1702336984112,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_46e44c44b01a46f4a604199e61920591",
+      "parentId": "fld_d0b92515c1744b849ffa8f7807c77d9b",
+      "modified": 1702600324832,
+      "created": 1698712299343,
+      "url": "http://localhost:8080/clientes",
+      "name": "Criar Cliente",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"nome\": \"novo cliente\",\n  \"cpf\": \"071.358.420-30\",\n  \"dataNascimento\": \"1998-12-11\",\n  \"cartaoCredito\": \"377457514151338\"\n}\n"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "User-Agent",
+          "value": "insomnia/8.3.0"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1702336984012,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_f93240c47e1049788ff176384adb5717",
+      "parentId": "fld_ae1fee2ff20d4f35af4df4463b127d55",
+      "modified": 1701737218744,
+      "created": 1701737077458,
+      "url": "{{_.host}}/unidades",
+      "name": "Lista Unidades",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "id": "pair_0008ada775fb4a77bd19e1fae42ebf81",
+          "name": "size",
+          "value": "1",
+          "description": "",
+          "disabled": true
+        },
+        {
+          "id": "pair_56a8ac77b3484a0dbcc58f578d73977d",
+          "name": "page",
+          "value": "0",
+          "description": "",
+          "disabled": true
+        }
+      ],
+      "headers": [
+        {
+          "name": "User-Agent",
+          "value": "insomnia/8.4.5"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1701737077458,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "fld_ae1fee2ff20d4f35af4df4463b127d55",
+      "parentId": "wrk_8312790dcebb48468d02e3c2582055f4",
+      "modified": 1701735660878,
+      "created": 1701735660878,
+      "name": "unidade",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1701735660878,
+      "_type": "request_group"
+    },
+    {
+      "_id": "req_286673b8c0fc422486db4e23d116d91b",
+      "parentId": "fld_ae1fee2ff20d4f35af4df4463b127d55",
+      "modified": 1701736764065,
+      "created": 1701735663975,
+      "url": "{{_.host}}/unidades",
+      "name": "Criar unidade",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"nome\": \"Nova unidade 2\",\n\t\"endereco\": {\n\t\t\"logradouro\": \"Av. Ipiranga 2\",\n\t\t\"bairro\": \"Bairro 2\",\n\t\t\"cidade\": \"Cidade 2\",\n\t\t\"numero\": 4000,\n\t\t\"estado\": \"RS\"\n\t}\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "User-Agent",
+          "value": "insomnia/8.4.5"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1701735663975,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_eab3aeb9f1a64f85a3a267ddf97ddb21",
+      "parentId": "wrk_8312790dcebb48468d02e3c2582055f4",
+      "modified": 1701132025302,
+      "created": 1700785402576,
+      "url": "http://localhost:8080/pessoas/1/pagamento",
+      "name": "Salvar Pagamento",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"cep\": \"90050190\",\n\t\"numero\": 400,\n  \"email\": \"teste@test.com\",\n  \"numeroCartao\": \"535340170452711'\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "User-Agent",
+          "value": "insomnia/8.4.2"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1700785402576,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_406c1b2681b94483b106d19594e58735",
+      "parentId": "fld_9547267b735d43c798b789d4b3134479",
+      "modified": 1700783005995,
+      "created": 1700778700846,
+      "url": "http://localhost:8080/enderecos/search",
+      "name": "Procurar enderecos",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "id": "pair_006fe2c5d6e342788ed87adae2a95848",
+          "name": "rua",
+          "value": "rua attilio bilib",
+          "description": "",
+          "disabled": false
+        },
+        {
+          "id": "pair_a4b43c8a94a74b03bb524cb7a52cfbdb",
+          "name": "nomePessoa",
+          "value": "jo",
+          "description": "",
+          "disabled": true
+        }
+      ],
+      "headers": [
+        {
+          "name": "User-Agent",
+          "value": "insomnia/8.4.2"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1700183055225,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "fld_9547267b735d43c798b789d4b3134479",
+      "parentId": "wrk_8312790dcebb48468d02e3c2582055f4",
+      "modified": 1700183051526,
+      "created": 1700183051526,
+      "name": "enderecos",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1700183051526,
+      "_type": "request_group"
+    },
+    {
+      "_id": "req_aa44513aded246d9b4e90d4c9b68e1b2",
+      "parentId": "fld_9547267b735d43c798b789d4b3134479",
+      "modified": 1700183081452,
+      "created": 1700183055125,
+      "url": "http://localhost:8080/enderecos",
+      "name": "Listar Enderecos",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "User-Agent",
+          "value": "insomnia/8.4.2"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1700183055125,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_3929cf2c9f304a22aaf6572b3ab54639",
+      "parentId": "fld_9547267b735d43c798b789d4b3134479",
+      "modified": 1702337601572,
+      "created": 1700183091703,
+      "url": "http://localhost:8080/enderecos",
+      "name": "Criar Endereco",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"logradouro\": \"Av. Ipiranga 2\",\n\t\"bairro\": \"Bairro 2\",\n\t\"cidade\": \"Cidade 2\",\n\t\"numero\": 1002,\n\t\"clienteId\": 4,\n\t\"estado\": \"RS\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_179368d717aa49d3bd57e1fe7a9316d2"
+        },
+        {
+          "name": "User-Agent",
+          "value": "insomnia/8.4.2",
+          "id": "pair_802738cf7917468b93197d9f424939c9"
+        },
+        {
+          "id": "pair_9fb6554a68964ad4ae25dbdb06372690",
+          "name": "Accept-Language",
+          "value": "pt_BR",
+          "description": ""
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1700182205439,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_790c6667726b466389a0c10755f232a6",
+      "parentId": "wrk_8312790dcebb48468d02e3c2582055f4",
+      "modified": 1700181546082,
+      "created": 1700181355753,
+      "url": "http://localhost:8080/pessoas/1/enderecos/1",
+      "name": "Associar pessoa endereço",
+      "description": "",
+      "method": "POST",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "User-Agent",
+          "value": "insomnia/8.4.2"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1700181355753,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_c4fbd285fd474f3e838533050c6fb83f",
+      "parentId": "wrk_8312790dcebb48468d02e3c2582055f4",
+      "modified": 1700180702734,
+      "created": 1700180664714,
+      "url": "http://localhost:8080/pessoas/1",
+      "name": "Lista pessoa pelo id",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "User-Agent",
+          "value": "insomnia/8.4.2"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1700180664714,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_a8269bc33fe145ec8cdbcb0b9d48f02a",
+      "parentId": "wrk_8312790dcebb48468d02e3c2582055f4",
+      "modified": 1699316309122,
+      "created": 1699313715032,
+      "url": "http://localhost:8080/2/lists/1/followers",
+      "name": "List Followers",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "id": "pair_25f42237692c4b2c982d84306cde08fa",
+          "name": "name",
+          "value": "fe",
+          "description": "",
+          "disabled": true
+        },
+        {
+          "id": "pair_907c2f04672b4c63b1445534add000ae",
+          "name": "ids",
+          "value": "1,2",
+          "description": ""
+        }
+      ],
+      "headers": [
+        {
+          "name": "User-Agent",
+          "value": "insomnia/8.3.0"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1699313715032,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_4ab823ecf4d7437d858200ca2f523be3",
+      "parentId": "wrk_8312790dcebb48468d02e3c2582055f4",
+      "modified": 1699568773750,
+      "created": 1699314016369,
+      "url": "http://localhost:8080/2/lists/",
+      "name": "Create Followers",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"id\": \"1\",\n\t\"name\": \"Teste\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "User-Agent",
+          "value": "insomnia/8.3.0"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1699013156482.5,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "env_6a87205be83c143fb64652e8aad67656e05956a3",
+      "parentId": "wrk_8312790dcebb48468d02e3c2582055f4",
+      "modified": 1701735689647,
+      "created": 1698712260370,
+      "name": "Base Environment",
+      "data": {},
+      "dataPropertyOrder": {},
+      "color": null,
+      "isPrivate": false,
+      "metaSortKey": 1698712260370,
+      "_type": "environment"
+    },
+    {
+      "_id": "jar_6a87205be83c143fb64652e8aad67656e05956a3",
+      "parentId": "wrk_8312790dcebb48468d02e3c2582055f4",
+      "modified": 1698712260373,
+      "created": 1698712260373,
+      "name": "Default Jar",
+      "cookies": [],
+      "_type": "cookie_jar"
+    },
+    {
+      "_id": "env_4527a10e69924d209d894d05d69e289d",
+      "parentId": "env_6a87205be83c143fb64652e8aad67656e05956a3",
+      "modified": 1701735713455,
+      "created": 1701735693073,
+      "name": "Localhost",
+      "data": {
+        "host": "http://localhost:8080"
+      },
+      "dataPropertyOrder": {
+        "&": [
+          "host"
+        ]
+      },
+      "color": null,
+      "isPrivate": false,
+      "metaSortKey": 1701735693073,
+      "_type": "environment"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 package br.com.targettrust.spring.aula.infraestructure.external;
 
-import br.com.targettrust.spring.aula.model.pessoa.Endereco;
+import br.com.targettrust.spring.aula.model.cliente.Endereco;
 import br.com.targettrust.spring.aula.service.external.CepExternalService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
